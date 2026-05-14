@@ -1,0 +1,134 @@
+(node:6416) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:6416) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+ERROR in src/pages/DashboardPage.tsx:5:30
+TS2307: Cannot find module '../components/AIAssistantPanel' or its corresponding type declarations.
+  [0m [90m 3 |[39m [36mimport[39m { initDB } [36mfrom[39m [32m'../db'[39m[33m;[39m
+   [90m 4 |[39m [36mimport[39m { useNavigate } [36mfrom[39m [32m'react-router-dom'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m [33mAIAssistantPanel[39m [36mfrom[39m [32m'../components/AIAssistantPanel'[39m[33m;[39m
+   [90m   |[39m                              [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 6 |[39m
+   [90m 7 |[39m [36mconst[39m cardStyle[33m:[39m [33mReact[39m[33m.[39m[33mCSSProperties[39m [33m=[39m {
+   [90m 8 |[39m   padding[33m:[39m [32m'2rem'[39m[33m,[39m[0m
+
+ERROR in src/pages/AttendancePage.tsx:3:32
+TS2307: Cannot find module '../scannerService' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m'react'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { verifyAttendance } [36mfrom[39m [32m'../apiExtra'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mScannerService[39m } [36mfrom[39m [32m'../scannerService'[39m[33m;[39m
+   [90m   |[39m                                [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m
+   [90m 5 |[39m [36mconst[39m [33mAttendancePage[39m[33m:[39m [33mReact[39m[33m.[39m[33mFC[39m [33m=[39m () [33m=>[39m {
+   [90m 6 |[39m   [36mconst[39m [studentId[33m,[39m setStudentId] [33m=[39m useState([32m''[39m)[33m;[39m[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:3:32
+TS2307: Cannot find module '../scannerService' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m'react'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { enrollFingerprint } [36mfrom[39m [32m'../apiExtra'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mScannerService[39m } [36mfrom[39m [32m'../scannerService'[39m[33m;[39m
+   [90m   |[39m                                [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m
+   [90m 5 |[39m [36mconst[39m [33mFingerprintEnrollmentPage[39m[33m:[39m [33mReact[39m[33m.[39m[33mFC[39m [33m=[39m () [33m=>[39m {
+   [90m 6 |[39m   [36mconst[39m [studentId[33m,[39m setStudentId] [33m=[39m useState([32m''[39m)[33m;[39m[0m
+
+ERROR in src/pages/AttendancePage.tsx:97:53
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m verifyAttendance(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setMessage(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (e) {[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:97:54
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m enrollFingerprint(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setStatus(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (err) {[0m
+
+ERROR in src/pages/AttendancePage.tsx:97:53
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m verifyAttendance(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setMessage(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (e) {[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:97:54
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m enrollFingerprint(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setStatus(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (err) {[0m
+
+ERROR in src/App.tsx:11:28
+TS2307: Cannot find module './pages/AttendancePage' or its corresponding type declarations.
+  [0m [90m  9 |[39m [36mimport[39m [33mFingerprintEnrollmentPage[39m [36mfrom[39m [32m'./pages/FingerprintEnrollmentPage'[39m[33m;[39m
+   [90m 10 |[39m [36mimport[39m [33mExamSetupPage[39m [36mfrom[39m [32m'./pages/ExamSetupPage'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 11 |[39m [36mimport[39m [33mAttendancePage[39m [36mfrom[39m [32m'./pages/AttendancePage'[39m[33m;[39m
+   [90m    |[39m                            [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 12 |[39m [36mimport[39m [33mMonitoringPage[39m [36mfrom[39m [32m'./pages/MonitoringPage'[39m[33m;[39m
+   [90m 13 |[39m [36mimport[39m [33mReportingPage[39m [36mfrom[39m [32m'./pages/ReportingPage'[39m[33m;[39m
+   [90m 14 |[39m [36mimport[39m [33mSignInPage[39m [36mfrom[39m [32m'./pages/SignInPage'[39m[33m;[39m[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:97:54
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m enrollFingerprint(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setStatus(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (err) {[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:97:54
+TS2345: Argument of type 'FingerprintCapture' is not assignable to parameter of type 'string'.
+  [0m [90m  95 |[39m       setScanProgress([35m100[39m)[33m;[39m
+   [90m  96 |[39m
+  [31m[1m>[22m[39m[90m  97 |[39m       [36mconst[39m res [33m=[39m [36mawait[39m enrollFingerprint(studentId[33m,[39m fingerprintData)[33m;[39m
+   [90m     |[39m                                                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m  98 |[39m       setStatus(res[33m.[39mmessage)[33m;[39m
+   [90m  99 |[39m       playSuccessSound()[33m;[39m
+   [90m 100 |[39m     } [36mcatch[39m (err) {[0m
+
+ERROR in src/App.tsx:9:39
+TS2307: Cannot find module './pages/FingerprintEnrollmentPage' or its corresponding type declarations.
+  [0m [90m  7 |[39m [36mimport[39m [33mDashboardPage[39m [36mfrom[39m [32m'./pages/DashboardPage'[39m[33m;[39m
+   [90m  8 |[39m [36mimport[39m [33mStudentManagementPage[39m [36mfrom[39m [32m'./pages/StudentManagementPage'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m [33mFingerprintEnrollmentPage[39m [36mfrom[39m [32m'./pages/FingerprintEnrollmentPage'[39m[33m;[39m
+   [90m    |[39m                                       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 10 |[39m [36mimport[39m [33mExamSetupPage[39m [36mfrom[39m [32m'./pages/ExamSetupPage'[39m[33m;[39m
+   [90m 11 |[39m [36mimport[39m [33mAttendancePage[39m [36mfrom[39m [32m'./pages/AttendancePage'[39m[33m;[39m
+   [90m 12 |[39m [36mimport[39m [33mMonitoringPage[39m [36mfrom[39m [32m'./pages/MonitoringPage'[39m[33m;[39m[0m
+
+ERROR in src/pages/AttendancePage.tsx:3:71
+TS2307: Cannot find module '../scannerService' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m'react'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { verifyAttendance } [36mfrom[39m [32m'../apiExtra'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mFingerprintCapture[39m[33m,[39m [33mScannerDeviceInfo[39m[33m,[39m [33mScannerService[39m } [36mfrom[39m [32m'../scannerService'[39m[33m;[39m
+   [90m   |[39m                                                                       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m
+   [90m 5 |[39m [36mconst[39m progressSteps [33m=[39m [[32m'Sensor armed'[39m[33m,[39m [32m'Fingerprint captured'[39m[33m,[39m [32m'Template matched'[39m[33m,[39m [32m'Attendance logged'[39m][33m;[39m
+   [90m 6 |[39m[0m
+
+ERROR in src/pages/FingerprintEnrollmentPage.tsx:3:71
+TS2307: Cannot find module '../scannerService' or its corresponding type declarations.
+  [0m [90m 1 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m'react'[39m[33m;[39m
+   [90m 2 |[39m [36mimport[39m { enrollFingerprint } [36mfrom[39m [32m'../apiExtra'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mFingerprintCapture[39m[33m,[39m [33mScannerDeviceInfo[39m[33m,[39m [33mScannerService[39m } [36mfrom[39m [32m'../scannerService'[39m[33m;[39m
+   [90m   |[39m                                                                       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 4 |[39m
+   [90m 5 |[39m [36mconst[39m enrollmentSteps [33m=[39m [[32m'Connect scanner'[39m[33m,[39m [32m'Capture primary print'[39m[33m,[39m [32m'Assess quality'[39m[33m,[39m [32m'Store enrollment template'[39m][33m;[39m
+   [90m 6 |[39m[0m
+
+^C
