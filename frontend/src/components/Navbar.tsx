@@ -5,6 +5,7 @@ import './Navbar.css';
 const Navbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const userRole = localStorage.getItem('userRole');
   
   const getLinkClass = (path: string) => {
     return location.pathname === path ? 'nav-link active' : 'nav-link';
@@ -12,6 +13,9 @@ const Navbar: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
     navigate('/');
   };
 
@@ -26,6 +30,9 @@ const Navbar: React.FC = () => {
         <Link to="/attendance" className={getLinkClass('/attendance')}>Attendance</Link>
         <Link to="/monitoring" className={getLinkClass('/monitoring')}>Monitoring</Link>
         <Link to="/reporting" className={getLinkClass('/reporting')}>Reports</Link>
+        {userRole === 'admin' && (
+          <Link to="/invigilators" className={getLinkClass('/invigilators')}>Invigilators</Link>
+        )}
         <button onClick={handleLogout} className="nav-link" style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 'inherit', fontFamily: 'inherit', color: '#dc2626', fontWeight: 'bold' }}>Logout</button>
       </div>
     </nav>

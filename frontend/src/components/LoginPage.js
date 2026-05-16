@@ -95,7 +95,6 @@ const LoginPage = () => {
 
       <div className="landing-nav">
         <button className="nav-btn" onClick={() => navigate('/login')}>Login</button>
-        <button className="nav-btn" onClick={() => navigate('/signup')}>Sign Up</button>
         <button className="nav-btn" onClick={() => window.location.href = 'mailto:support@examsys.com'}>Contact Us</button>
       </div>
       

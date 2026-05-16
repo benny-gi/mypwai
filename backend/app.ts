@@ -2,6 +2,7 @@ import express from 'express';
 import attendanceRouter from './modules/attendance.js';
 import aiRouter from './modules/ai.js';
 import authRouter from './modules/auth.js';
+import adminRouter from './modules/admin.js';
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.use((req, res, next) => {
   if (origin) {
     res.header('Access-Control-Allow-Origin', origin);
   }
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
 
   if (req.method === 'OPTIONS') {
@@ -22,12 +23,21 @@ app.use((req, res, next) => {
 
 app.use(express.json({ limit: '20mb' }));
 
-app.get('/', (req, res) => {
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true });
+});
+
+app.head('/api/health', (_req, res) => {
+  res.sendStatus(200);
+});
+
+app.get('/', (_req, res) => {
   res.send('Examination Attendance System Backend');
 });
 
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/admin', adminRouter);
 
 export default app;

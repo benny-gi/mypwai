@@ -69,6 +69,14 @@ mysql -u root -p fingerprint_attendance < migrations/001_init_schema.sql
 - Open `migrations/001_init_schema.sql`
 - Execute it in your MySQL GUI tool
 
+If your database already exists and you are updating an older install, also run:
+
+```bash
+npm run setup-db
+```
+
+This applies the later migrations, including the invigilator active/deleted state used for password reissue and access revocation.
+
 ### 4. Migrate Data from JSON
 
 If you have existing data in JSON files:

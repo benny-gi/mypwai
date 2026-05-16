@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "homepage": ".",
+  "proxy": "http://localhost:4007",
   "scripts": {
     "dev": "set PORT=3001&& react-scripts start",
     "start": "react-scripts start",
