@@ -751,6 +751,14 @@ export const resetInvigilatorPassword = async (id: number) => {
   return response.json();
 };
 
+export const bulkResetInvigilatorPasswords = async (ids: number[]) => {
+  const response = await requestAdmin('/invigilators/bulk-reset-passwords', {
+    method: 'POST',
+    body: JSON.stringify({ ids }),
+  });
+  return response.json();
+};
+
 export const storeMalpracticeEvent = async (payload: {
   studentId?: string;
   eventType: string;

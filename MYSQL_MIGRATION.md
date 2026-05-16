@@ -56,6 +56,37 @@ DB_NAME=fingerprint_attendance
 JWT_SECRET=your-super-secret-jwt-key
 ```
 
+### Passwords & Secrets
+
+Guidance for handling passwords and secrets used by the system.
+
+- **Database user password:** Use a strong password for the MySQL user (`attendance_user`) and store it in your `.env` as `DB_PASSWORD`. Avoid committing `.env` to source control.
+- **Admin account password:** The project provides a seed script that creates a default admin account. You can override the credentials by setting env vars and running the script from the `backend` folder:
+
+```bash
+# Set your desired admin email and password, then run the seed script
+ADMIN_EMAIL=you@school.edu ADMIN_PASSWORD="StrongP@ssw0rd" npx tsx scripts/seed-admin.ts
+```
+
+The seed script stores the admin password securely using bcrypt hashing. The default seeded credentials are `admin@school.edu` / `admin123` unless you override them.
+
+- **JWT secret:** Set a long, random value for `JWT_SECRET` in `.env`. You can generate one locally with:
+
+```bash
+# Example: generate a 32-byte base64 secret
+openssl rand -base64 32
+```
+
+- **Password reset / rotation:** To rotate or reset an admin password, re-run the seed script with a new `ADMIN_PASSWORD` or update the `users` table directly (use bcrypt to hash the new password). For automated resets, consider adding an endpoint that issues password reset tokens (not included by default).
+
+- **Do not store secrets in source control:** Keep `.env` files out of git and use platform-specific secret management for production (Vault, AWS Secrets Manager, Azure Key Vault, etc.).
+
+**Invigilator passwords shown in the app**
+
+When you create invigilator accounts (single or bulk) via the Admin UI, the backend generates a temporary password and returns it in the creation response. The frontend displays the generated password immediately after creation (or after a password reset) — copy it and deliver it to the invigilator, because the password is only shown once. For bulk imports, you can download a CSV containing the generated passwords.
+
+The default seeded admin account (when you run the seed script without overrides) uses the credentials `admin@school.edu` / `admin123`. If you run the seed script with custom env vars, the chosen `ADMIN_PASSWORD` will be the initial password and is printed to the console by the script.
+
 ### 3. Create Database Schema
 
 Run the migration SQL script:

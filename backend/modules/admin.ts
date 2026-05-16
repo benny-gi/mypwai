@@ -5,6 +5,28 @@ import { query, exec } from '../db.js';
 
 const router = express.Router();
 
+// Ensure temporary plaintext password columns exist (used only to show the newly-generated
+// password to admins for first-time delivery). These columns are optional and the code
+// tolerates their absence, but we attempt to add them automatically when the module loads.
+(async () => {
+  try {
+    await exec(
+      `ALTER TABLE users ADD COLUMN temp_password VARCHAR(255) NULL AFTER password_hash`
+    );
+    console.log('✓ Added temp_password column to users table');
+  } catch {
+    // ignore if already exists
+  }
+  try {
+    await exec(
+      `ALTER TABLE users ADD COLUMN temp_password_expires_at TIMESTAMP NULL DEFAULT NULL AFTER temp_password`
+    );
+    console.log('✓ Added temp_password_expires_at column to users table');
+  } catch {
+    // ignore if already exists
+  }
+})();
+
 /**
  * Generate a random 8-character alphanumeric password.
  */
@@ -16,7 +38,7 @@ function generatePassword(): string {
 router.get('/invigilators', async (_req, res) => {
   try {
     const rows = (await query(
-      `SELECT id, username, email, full_name, created_at, is_active, deleted_at
+      `SELECT id, username, email, full_name, created_at, is_active, deleted_at, temp_password, temp_password_expires_at
        FROM users
        WHERE role = 'invigilator'
        ORDER BY created_at DESC`
@@ -63,9 +85,9 @@ router.post('/invigilators', async (req, res) => {
 
       await exec(
         `UPDATE users
-         SET username = ?, full_name = ?, password_hash = ?, is_active = 1, deleted_at = NULL
+         SET username = ?, full_name = ?, password_hash = ?, is_active = 1, deleted_at = NULL, temp_password = ?, temp_password_expires_at = DATE_ADD(NOW(), INTERVAL 1 DAY)
          WHERE id = ? AND role = 'invigilator'`,
-        [username, fullName, passwordHash, user.id]
+        [username, fullName, passwordHash, password, user.id]
       );
 
       return res.status(201).json({
@@ -76,9 +98,9 @@ router.post('/invigilators', async (req, res) => {
     }
 
     await exec(
-      `INSERT INTO users (username, email, full_name, password_hash, role, is_active)
-       VALUES (?, ?, ?, ?, 'invigilator', 1)`,
-      [username, email, fullName, passwordHash]
+      `INSERT INTO users (username, email, full_name, password_hash, role, is_active, temp_password, temp_password_expires_at)
+       VALUES (?, ?, ?, ?, 'invigilator', 1, ?, DATE_ADD(NOW(), INTERVAL 1 DAY))`,
+      [username, email, fullName, passwordHash, password]
     );
     return res.status(201).json({
       success: true,
@@ -147,9 +169,9 @@ router.post('/invigilators/bulk', async (req, res) => {
 
         await exec(
           `UPDATE users
-           SET username = ?, full_name = ?, password_hash = ?, is_active = 1, deleted_at = NULL
+           SET username = ?, full_name = ?, password_hash = ?, is_active = 1, deleted_at = NULL, temp_password = ?, temp_password_expires_at = DATE_ADD(NOW(), INTERVAL 1 DAY)
            WHERE id = ? AND role = 'invigilator'`,
-          [username, fullName, passwordHash, user.id]
+          [username, fullName, passwordHash, password, user.id]
         );
         results.push({ email, fullName, username, generatedPassword: password, status: 'created' });
         created++;
@@ -157,9 +179,9 @@ router.post('/invigilators/bulk', async (req, res) => {
       }
 
       await exec(
-        `INSERT INTO users (username, email, full_name, password_hash, role, is_active)
-         VALUES (?, ?, ?, ?, 'invigilator', 1)`,
-        [username, email, fullName, passwordHash]
+        `INSERT INTO users (username, email, full_name, password_hash, role, is_active, temp_password, temp_password_expires_at)
+         VALUES (?, ?, ?, ?, 'invigilator', 1, ?, DATE_ADD(NOW(), INTERVAL 1 DAY))`,
+        [username, email, fullName, passwordHash, password]
       );
       results.push({ email, fullName, username, generatedPassword: password, status: 'created' });
       created++;
@@ -213,9 +235,9 @@ router.post('/invigilators/:id/reset-password', async (req, res) => {
   try {
     const result = (await exec(
       `UPDATE users
-       SET password_hash = ?, is_active = 1, deleted_at = NULL
+       SET password_hash = ?, is_active = 1, deleted_at = NULL, temp_password = ?, temp_password_expires_at = DATE_ADD(NOW(), INTERVAL 1 DAY)
        WHERE id = ? AND role = 'invigilator'`,
-      [passwordHash, id]
+      [passwordHash, password, id]
     )) as any;
 
     if (result.affectedRows === 0) {
@@ -227,6 +249,66 @@ router.post('/invigilators/:id/reset-password', async (req, res) => {
     const message = error instanceof Error ? error.message : 'Failed to reset invigilator password';
     return res.status(500).json({ message });
   }
+});
+
+// ---------- BULK RESET PASSWORDS ----------
+router.post('/invigilators/bulk-reset-passwords', async (req, res) => {
+  const ids = req.body?.ids;
+
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ message: 'ids array is required and must not be empty' });
+  }
+
+  const results: { id: number; email: string; fullName: string; generatedPassword: string; success: boolean; reason?: string }[] = [];
+  let succeeded = 0;
+  let failed = 0;
+
+  for (const id of ids) {
+    const numId = parseInt(String(id), 10);
+    if (isNaN(numId)) {
+      results.push({ id: numId, email: '', fullName: '', generatedPassword: '', success: false, reason: 'Invalid ID' });
+      failed++;
+      continue;
+    }
+
+    const password = generatePassword();
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    try {
+      const userBefore = (await query(
+        `SELECT email, full_name FROM users WHERE id = ? AND role = 'invigilator' LIMIT 1`,
+        [numId]
+      )) as Array<{ email: string; full_name: string }>;
+
+      if (userBefore.length === 0) {
+        results.push({ id: numId, email: '', fullName: '', generatedPassword: '', success: false, reason: 'Invigilator not found' });
+        failed++;
+        continue;
+      }
+
+      const { email, full_name } = userBefore[0];
+
+      await exec(
+        `UPDATE users
+         SET password_hash = ?, is_active = 1, deleted_at = NULL, temp_password = ?, temp_password_expires_at = DATE_ADD(NOW(), INTERVAL 1 DAY)
+         WHERE id = ? AND role = 'invigilator'`,
+        [passwordHash, password, numId]
+      );
+
+      results.push({ id: numId, email, fullName: full_name, generatedPassword: password, success: true });
+      succeeded++;
+    } catch (error: any) {
+      const reason = error instanceof Error ? error.message : 'Unknown error';
+      results.push({ id: numId, email: '', fullName: '', generatedPassword: '', success: false, reason });
+      failed++;
+    }
+  }
+
+  return res.status(200).json({
+    success: true,
+    summary: { total: ids.length, succeeded, failed },
+    results,
+  });
 });
 
 export default router;
