@@ -9,11 +9,11 @@ import {
 const progressSteps = ['Sensor armed', 'Fingerprint captured', 'Template matched', 'Attendance logged'];
 
 const glassCard: React.CSSProperties = {
-  background: 'rgba(255,255,255,0.92)',
-  borderRadius: '22px',
-  boxShadow: '0 24px 50px rgba(15, 23, 42, 0.18)',
-  border: '1px solid rgba(255,255,255,0.5)',
-  backdropFilter: 'blur(14px)',
+  background: 'var(--card)',
+  borderRadius: '16px',
+  boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+  border: '1px solid var(--border)',
+  borderTop: '3px solid var(--upsa-navy)',
 };
 
 const AttendancePage: React.FC = () => {
@@ -156,12 +156,10 @@ const AttendancePage: React.FC = () => {
 
   return (
     <div
+      className="page-enter"
       style={{
         minHeight: 'calc(100vh - 68px)',
         width: '100%',
-        backgroundImage: 'linear-gradient(135deg, #0b1020 0%, #1e3a8a 50%, #0f766e 100%)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
         padding: '2rem',
       }}
     >
@@ -170,20 +168,20 @@ const AttendancePage: React.FC = () => {
           <div style={{ color: '#BAE6FD', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.82rem' }}>
             Fingerprint Verification
           </div>
-          <h1 style={{ color: '#fff', margin: '0.45rem 0 0.5rem', fontSize: '2.35rem' }}>Biometric Attendance Gate</h1>
-          <p style={{ color: '#E2E8F0', margin: 0, maxWidth: '720px', lineHeight: 1.6 }}>
+          <h1 className="animate-fade-in-up" style={{ color: 'var(--accent)', margin: '0.45rem 0 0.5rem', fontSize: '2rem', fontWeight: 700 }}>Biometric Attendance Gate</h1>
+          <p className="animate-fade-in-up delay-1" style={{ color: 'var(--text)', margin: 0, maxWidth: '720px', lineHeight: 1.6 }}>
             Connect the fingerprint scanner, enter the student ID, then scan the finger to mark attendance for the current session.
           </p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '1.5rem' }}>
-          <div style={{ ...glassCard, padding: '1.5rem' }}>
+          <div className="animate-scale-in delay-2" style={{ ...glassCard, padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', gap: '1rem', flexWrap: 'wrap' }}>
               <div>
                 <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                   Live Sensor Feed
                 </div>
-                <h3 style={{ margin: '0.35rem 0 0', color: '#0F172A', fontSize: '1.5rem' }}>Fingerprint Capture Surface</h3>
+                <h3 style={{ margin: '0.35rem 0 0', color: 'var(--text)', fontSize: '1.5rem' }}>Fingerprint Capture Surface</h3>
               </div>
               <div style={{
                 display: 'inline-flex',
@@ -191,11 +189,11 @@ const AttendancePage: React.FC = () => {
                 gap: '0.5rem',
                 padding: '0.55rem 0.9rem',
                 borderRadius: '999px',
-                background: deviceConnected ? '#DCFCE7' : '#FEE2E2',
-                color: deviceConnected ? '#166534' : '#B91C1C',
+                background: deviceConnected ? '#134E4A' : '#7F1D1D',
+                color: deviceConnected ? '#5EEAD4' : '#FCA5A5',
                 fontWeight: 700,
               }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '999px', background: deviceConnected ? '#22C55E' : '#EF4444' }} />
+                <span style={{ width: '10px', height: '10px', borderRadius: '999px', background: deviceConnected ? '#5EEAD4' : '#FCA5A5' }} />
                 {deviceConnected ? 'Scanner ready' : 'Sensor unavailable'}
               </div>
             </div>
@@ -235,16 +233,16 @@ const AttendancePage: React.FC = () => {
                   width: '210px',
                   height: '250px',
                   borderRadius: '36px',
-                  border: `2px solid ${loading ? '#67E8F9' : '#94A3B8'}`,
+                  border: `2px solid ${loading ? '#67E8F9' : 'var(--text-secondary)'}`,
                   boxShadow: loading ? '0 0 0 12px rgba(103,232,249,0.08), 0 0 45px rgba(34,211,238,0.18)' : 'none',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto',
-                  background: 'rgba(255,255,255,0.06)',
+                  background: 'var(--border)',
                   transition: 'all 0.25s ease',
                 }}>
-                  <svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke={loading ? '#67E8F9' : '#CBD5E1'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke={loading ? '#67E8F9' : 'var(--muted)'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 6" />
                     <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2" />
                     <path d="M8.63 7.17A2 2 0 0 1 9.71 5.5" />
@@ -260,44 +258,43 @@ const AttendancePage: React.FC = () => {
             </div>
 
             <div style={{ marginTop: '1.2rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#475569', fontWeight: 700, marginBottom: '0.45rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--muted)', fontWeight: 700, marginBottom: '0.45rem' }}>
                 <span>Capture progress</span>
                 <span>{scanProgress}%</span>
               </div>
-              <div style={{ width: '100%', height: '12px', borderRadius: '999px', background: '#E2E8F0', overflow: 'hidden' }}>
+              <div style={{ width: '100%', height: '10px', borderRadius: '999px', background: 'var(--border)', overflow: 'hidden' }}>
                 <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #0EA5E9, #14B8A6)', transition: 'width 0.2s ease' }} />
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div className="animate-scale-in delay-3" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ ...glassCard, padding: '1.35rem' }}>
               <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 Operator Console
               </div>
               <div style={{ marginTop: '0.9rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', color: '#334155', fontWeight: 700 }}>Student ID</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--muted)', fontWeight: 700 }}>Student ID</label>
                   <input
                     type="text"
                     placeholder="Enter Student ID"
                     value={studentId}
                     onChange={(e) => setStudentId(e.target.value)}
                     disabled={loading}
-                    style={{ flex: 1, padding: '0.95rem 1rem', borderRadius: '16px', border: '1px solid #CBD5E1', fontSize: '1rem' }}
+                    className="input"
                   />
                   <button
                     onClick={handleVerify}
                     disabled={loading || !deviceConnected}
+                    className={`btn ${loading || !deviceConnected ? '' : 'btn-primary'}`}
                     style={{
                       width: '100%',
-                      padding: '1rem 1.25rem',
-                      border: 'none',
-                      borderRadius: '16px',
-                      background: loading || !deviceConnected ? '#94A3B8' : 'linear-gradient(145deg, #0284C7, #0F766E)',
-                      color: '#fff',
-                      cursor: loading || !deviceConnected ? 'not-allowed' : 'pointer',
+                      marginTop: '0.75rem',
+                      background: loading || !deviceConnected ? '#334155' : undefined,
+                      justifyContent: 'center',
                       fontWeight: 800,
-                      minWidth: '130px',
+                      borderRadius: '16px',
+                      padding: '1rem',
                     }}
                   >
                   {loading ? 'Scanning fingerprint...' : 'Scan fingerprint and mark attendance'}
@@ -308,13 +305,13 @@ const AttendancePage: React.FC = () => {
                 {progressSteps.map((step, index) => {
                   const complete = index <= activeStep && (loading || scanProgress === 100);
                   return (
-                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#0F766E' : '#64748B' }}>
+                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#5EEAD4' : 'var(--muted)' }}>
                       <div style={{
                         width: '28px',
                         height: '28px',
                         borderRadius: '999px',
-                        background: complete ? '#CCFBF1' : '#E2E8F0',
-                        color: complete ? '#0F766E' : '#64748B',
+                        background: complete ? '#134E4A' : 'var(--border)',
+                        color: complete ? '#5EEAD4' : 'var(--muted)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -332,60 +329,24 @@ const AttendancePage: React.FC = () => {
                 <button
                   onClick={connectScanner}
                   disabled={loading || !deviceConnected}
-                  style={{
-                    border: '1px solid #BAE6FD',
-                    background: '#EFF6FF',
-                    color: '#0369A1',
-                    borderRadius: '14px',
-                    padding: '0.75rem 1rem',
-                    fontWeight: 800,
-                    cursor: loading || !deviceConnected ? 'not-allowed' : 'pointer',
-                  }}
+                  className="btn-outline-action"
                 >
                   Check fingerprint support
                 </button>
                 <button
                   onClick={probeDeviceConnection}
                   disabled={loading}
-                  style={{
-                    border: '1px solid #CBD5E1',
-                    background: '#FFFFFF',
-                    color: '#334155',
-                    borderRadius: '14px',
-                    padding: '0.75rem 1rem',
-                    fontWeight: 800,
-                    cursor: loading ? 'not-allowed' : 'pointer',
-                  }}
+                  className="btn-outline-action"
                 >
                   Check status
                 </button>
               </div>
             </div>
 
-            <div style={{ ...glassCard, padding: '1.35rem' }}>
-              <h3 style={{ marginTop: 0, color: '#0F172A' }}>Scanner Telemetry</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
-                <div><div style={{ color: '#64748B', fontSize: '0.82rem' }}>Support</div><div style={{ fontWeight: 800, color: '#0F172A' }}>{deviceConnected ? 'Available' : 'Unavailable'}</div></div>
-                <div><div style={{ color: '#64748B', fontSize: '0.82rem' }}>Connection</div><div style={{ fontWeight: 800, color: '#0F172A' }}>{deviceInfo?.connectionType || 'Not checked'}</div></div>
-                <div><div style={{ color: '#64748B', fontSize: '0.82rem' }}>Device ID</div><div style={{ fontWeight: 800, color: '#0F172A' }}>{deviceInfo?.deviceId || '--'}</div></div>
-                <div><div style={{ color: '#64748B', fontSize: '0.82rem' }}>Last Calibration</div><div style={{ fontWeight: 800, color: '#0F172A' }}>{deviceInfo?.lastCalibration || '--'}</div></div>
+            <div style={{ ...glassCard, padding: '1.35rem', marginTop: '1.25rem' }}>
+              <div style={{ color: 'var(--muted)', lineHeight: 1.45, fontSize: '0.9rem' }}>
+                Enter the student ID, then click scan. The connected fingerprint scanner will capture the finger and the student will be marked present.
               </div>
-              <div style={{ marginTop: '1rem', color: '#64748B', lineHeight: 1.45 }}>
-                Enter the student ID, then click scan. The connected fingerprint scanner will capture the finger and then the student will be marked present.
-              </div>
-            </div>
-
-            <div style={{ ...glassCard, padding: '1.35rem' }}>
-              <h3 style={{ marginTop: 0, color: '#0F172A' }}>Latest Capture</h3>
-              {capture ? (
-                <div style={{ display: 'grid', gap: '0.7rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#64748B' }}>Finger</span><strong>{capture.fingerLabel}</strong></div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#64748B' }}>Quality</span><strong>{capture.quality}%</strong></div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ color: '#64748B' }}>Captured</span><strong>{capture.captureTime}</strong></div>
-                </div>
-              ) : (
-                <div style={{ color: '#64748B', lineHeight: 1.5 }}>No fingerprint captured yet. Click scan to inspect the latest biometric sample quality.</div>
-              )}
             </div>
           </div>
         </div>
@@ -395,8 +356,8 @@ const AttendancePage: React.FC = () => {
             marginTop: '1.5rem',
             ...glassCard,
             padding: '1rem 1.25rem',
-            borderLeft: message.toLowerCase().includes('failed') || message.toLowerCase().includes('offline') ? '6px solid #EF4444' : '6px solid #14B8A6',
-            color: '#0F172A',
+            borderLeft: message.toLowerCase().includes('failed') || message.toLowerCase().includes('offline') ? '6px solid var(--upsa-danger)' : '6px solid #5EEAD4',
+            color: 'var(--text)',
             fontWeight: 700,
           }}>
             {message}

@@ -290,57 +290,54 @@ const AdminInvigilatorsPage: React.FC = () => {
   };
 
   return (
-    <div style={{
+    <div className="page-enter" style={{
       minHeight: 'calc(100vh - 68px)',
       width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
       padding: '2rem'
     }}>
-    <div style={{ maxWidth: 1000, margin: '0 auto', fontFamily: 'Segoe UI, sans-serif' }}>
-      <h1 style={{ fontSize: '2.25rem', marginBottom: '0.5rem', color: '#fff', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Invigilator Management</h1>
-      <p style={{ color: '#eee', marginBottom: '2rem', textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>
+    <div style={{ maxWidth: 1000, margin: '0 auto', fontFamily: 'Inter, Segoe UI, sans-serif' }}>
+      <h1 className="animate-fade-in-up" style={{ fontSize: '2.25rem', marginBottom: '0.5rem', color: 'var(--accent)', fontWeight: 700 }}>Invigilator Management</h1>
+      <p className="animate-fade-in-up delay-1" style={{ color: 'var(--muted)', marginBottom: '2rem' }}>
         Create and manage invigilator accounts. Emails are used as usernames. Passwords are auto-generated.
       </p>
 
       {/* Single Create Form */}
-      <div style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 12, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)', backdropFilter: 'blur(5px)' }}>
-        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#1F2937' }}>Add Single Invigilator</h3>
+      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Add Single Invigilator</h3>
         <form onSubmit={handleCreate} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <div style={{ flex: '1 1 220px' }}>
-            <label style={{ display: 'block', marginBottom: '0.3rem', fontWeight: 600, fontSize: '0.9rem', color: '#374151' }}>Full Name *</label>
+            <label style={{ display: 'block', marginBottom: '0.3rem', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Full Name *</label>
             <input type="text" value={fullName} onChange={e => setFullName(e.target.value)}
               placeholder="e.g. John Mensah"
-              style={{ width: '100%', padding: '0.75rem', border: '1px solid #D1D5DB', borderRadius: 8, boxSizing: 'border-box' }} />
+              className="input" />
           </div>
           <div style={{ flex: '1 1 220px' }}>
-            <label style={{ display: 'block', marginBottom: '0.3rem', fontWeight: 600, fontSize: '0.9rem', color: '#374151' }}>Email *</label>
+            <label style={{ display: 'block', marginBottom: '0.3rem', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Email *</label>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)}
               placeholder="e.g. john@school.edu"
-              style={{ width: '100%', padding: '0.75rem', border: '1px solid #D1D5DB', borderRadius: 8, boxSizing: 'border-box' }} />
+              className="input" />
           </div>
           <button type="submit" disabled={creating}
-            style={{ padding: '0.75rem 1.5rem', backgroundColor: '#4F46E5', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            className="btn btn-primary">
             {creating ? 'Creating...' : 'Generate & Create'}
           </button>
         </form>
-        {error && <div style={{ color: '#EF4444', marginTop: '0.75rem', fontSize: '0.9rem', background: '#FEF2F2', padding: '0.75rem', borderRadius: 8 }}>{error}</div>}
-        {success && !bulkResults && <div style={{ color: '#065F46', marginTop: '0.75rem', fontSize: '0.9rem', background: '#ECFDF5', padding: '0.75rem', borderRadius: 8 }}>{success}</div>}
+        {error && <div style={{ color: 'var(--upsa-danger)', marginTop: '0.75rem', fontSize: '0.9rem', background: 'var(--upsa-danger-light)', padding: '0.75rem', borderRadius: 12 }}>{error}</div>}
+        {success && !bulkResults && <div style={{ color: 'var(--upsa-success)', marginTop: '0.75rem', fontSize: '0.9rem', background: 'var(--upsa-success-light)', padding: '0.75rem', borderRadius: 12 }}>{success}</div>}
         {generatedPassword && (
-          <div style={{ marginTop: '0.75rem', padding: '0.75rem', background: '#ECFDF5', borderRadius: 8, border: '1px solid #A7F3D0' }}>
-            <strong style={{ color: '#065F46' }}>Generated Password:</strong>{' '}
+          <div style={{ marginTop: '0.75rem', padding: '0.75rem', background: 'var(--upsa-success-light)', borderRadius: 12, border: '1px solid #A7F3D0' }}>
+            <strong style={{ color: 'var(--upsa-success)' }}>Generated Password:</strong>{' '}
             <code style={{ fontSize: '1.1rem', fontWeight: 700, background: '#D1FAE5', padding: '0.2rem 0.5rem', borderRadius: 4 }}>{generatedPassword}</code>
-            <span style={{ display: 'block', marginTop: '0.3rem', color: '#047857', fontSize: '0.8rem' }}>
+            <span style={{ display: 'block', marginTop: '0.3rem', color: 'var(--upsa-success)', fontSize: '0.8rem' }}>
               Copy this password now — it will not be shown again.
             </span>
           </div>
         )}
         {actionPassword && (
-          <div style={{ marginTop: '0.75rem', padding: '0.75rem', background: '#DBEAFE', borderRadius: 8, border: '1px solid #93C5FD' }}>
-            <strong style={{ color: '#1E40AF' }}>New Password Issued:</strong>{' '}
+          <div style={{ marginTop: '0.75rem', padding: '0.75rem', background: 'var(--upsa-info-light)', borderRadius: 12, border: '1px solid #93C5FD' }}>
+            <strong style={{ color: 'var(--upsa-info)' }}>New Password Issued:</strong>{' '}
             <code style={{ fontSize: '1.1rem', fontWeight: 700, background: '#EFF6FF', padding: '0.2rem 0.5rem', borderRadius: 4 }}>{actionPassword}</code>
-            <span style={{ display: 'block', marginTop: '0.3rem', color: '#2563EB', fontSize: '0.8rem' }}>
+            <span style={{ display: 'block', marginTop: '0.3rem', color: 'var(--upsa-info)', fontSize: '0.8rem' }}>
               This re-enables the account and replaces the previous password.
             </span>
           </div>
@@ -348,20 +345,20 @@ const AdminInvigilatorsPage: React.FC = () => {
       </div>
 
       {/* Bulk Upload Section */}
-      <div style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 12, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)', backdropFilter: 'blur(5px)' }}>
-        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#1F2937' }}>Bulk Import Invigilators</h3>
-        <p style={{ color: '#6B7280', fontSize: '0.9rem', marginBottom: '1rem' }}>
+      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Bulk Import Invigilators</h3>
+        <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
           Upload multiple invigilator emails at once. Passwords will be auto-generated for each.
         </p>
 
         {!bulkMode && (
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <button onClick={() => setBulkMode('paste')}
-              style={{ padding: '0.75rem 1.5rem', backgroundColor: '#4F46E5', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer' }}>
+              className="btn btn-primary">
               📋 Paste Emails
             </button>
             <button onClick={() => setBulkMode('csv')}
-              style={{ padding: '0.75rem 1.5rem', backgroundColor: '#F59E0B', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer' }}>
+              className="btn btn-gold">
               📄 Upload CSV
             </button>
           </div>
@@ -371,10 +368,11 @@ const AdminInvigilatorsPage: React.FC = () => {
           <div style={{ marginTop: '1rem' }}>
             <div style={{ marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
               <button onClick={() => { setBulkMode(null); setBulkText(''); }}
-                style={{ background: 'transparent', border: '1px solid #D1D5DB', borderRadius: 6, padding: '0.3rem 0.75rem', cursor: 'pointer', fontSize: '0.85rem', color: '#374151' }}>
+                className="btn-outline-action"
+                style={{ fontSize: '0.85rem' }}>
                 ← Back
               </button>
-              <span style={{ color: '#6B7280', fontSize: '0.85rem', display: 'flex', alignItems: 'center' }}>
+              <span style={{ color: 'var(--muted)', fontSize: '0.85rem', display: 'flex', alignItems: 'center' }}>
                 {bulkMode === 'paste' ? 'Paste emails (one per line)' : 'Paste CSV content (columns: fullName, email)'}
               </span>
             </div>
@@ -385,13 +383,13 @@ const AdminInvigilatorsPage: React.FC = () => {
                   : 'fullName,email\nJohn Mensah,john.mensah@school.edu\nJane Doe,jane.doe@school.edu'
               }
               rows={8}
-              style={{ width: '100%', padding: '0.75rem', border: '1px solid #D1D5DB', borderRadius: 8, fontFamily: 'monospace', fontSize: '0.9rem', boxSizing: 'border-box', resize: 'vertical' }} />
+              style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border)', borderRadius: 12, fontFamily: 'monospace', fontSize: '0.9rem', boxSizing: 'border-box', resize: 'vertical' }} />
             <div style={{ marginTop: '0.75rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
               <button onClick={handleBulkUpload} disabled={bulkUploading || !bulkText.trim()}
-                style={{ padding: '0.75rem 1.5rem', backgroundColor: '#10B981', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer' }}>
+                className="btn btn-success">
                 {bulkUploading ? 'Importing...' : `Import ${parseBulkText().length} Invigilator${parseBulkText().length !== 1 ? 's' : ''}`}
               </button>
-              <span style={{ color: '#6B7280', fontSize: '0.85rem' }}>
+              <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
                 {bulkText.trim() ? `${parseBulkText().length} entries detected` : ''}
               </span>
             </div>
@@ -403,22 +401,22 @@ const AdminInvigilatorsPage: React.FC = () => {
           <div style={{ marginTop: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
               <div>
-                <strong style={{ color: '#065F46' }}>{bulkSummary?.created || 0} created</strong>
+                <strong style={{ color: 'var(--upsa-success)' }}>{bulkSummary?.created || 0} created</strong>
                 {bulkSummary && bulkSummary.skipped > 0 && (
-                  <span style={{ color: '#D97706', marginLeft: '1rem' }}>
+                  <span style={{ color: 'var(--upsa-warning)', marginLeft: '1rem' }}>
                     ⚠ {bulkSummary.skipped} skipped
                   </span>
                 )}
               </div>
               <button onClick={downloadResultsCSV}
-                style={{ padding: '0.5rem 1rem', backgroundColor: '#2563EB', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}>
+                className="btn btn-secondary" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
                 📥 Download Passwords CSV
               </button>
             </div>
-            <div style={{ maxHeight: 400, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8 }}>
+            <div style={{ maxHeight: 400, overflowY: 'auto', border: '1px solid var(--border)', borderRadius: 12 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
                 <thead>
-                  <tr style={{ background: '#f9fafb', position: 'sticky', top: 0, borderBottom: '2px solid #e5e7eb' }}>
+                  <tr style={{ background: 'rgba(255,255,255,0.04)', position: 'sticky', top: 0, borderBottom: '2px solid var(--border)' }}>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>Email</th>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>Full Name</th>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>Password</th>
@@ -427,7 +425,7 @@ const AdminInvigilatorsPage: React.FC = () => {
                 </thead>
                 <tbody>
                   {bulkResults.map((r, i) => (
-                    <tr key={i} style={{ borderBottom: '1px solid #f3f4f6', backgroundColor: r.status === 'skipped' ? '#FEF2F2' : r.status === 'created' ? '#F0FDF4' : 'transparent' }}>
+                    <tr key={i} style={{ borderBottom: '1px solid var(--border)', backgroundColor: r.status === 'skipped' ? '#7F1D1D' : r.status === 'created' ? '#134E4A' : 'transparent' }}>
                       <td style={{ padding: '0.5rem', fontFamily: 'monospace' }}>{r.email}</td>
                       <td style={{ padding: '0.5rem' }}>{r.fullName}</td>
                       <td style={{ padding: '0.5rem' }}>
@@ -452,22 +450,22 @@ const AdminInvigilatorsPage: React.FC = () => {
       </div>
 
       {/* Invigilator List */}
-      <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: 12, padding: '1.5rem', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)', backdropFilter: 'blur(5px)' }}>
-        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: '#1F2937' }}>Current Invigilators ({invigilators.length})</h3>
+      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+        <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Current Invigilators ({invigilators.length})</h3>
         
         {/* Bulk Reset Section */}
         {invigilators.length > 0 && (
           <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div style={{ color: '#6B7280', fontSize: '0.9rem' }}>
+            <div style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
               {selectedIds.size > 0 ? `${selectedIds.size} selected` : 'No selection'}
             </div>
             <button onClick={handleBulkReset} disabled={bulkResetting || selectedIds.size === 0}
-              style={{ padding: '0.5rem 1rem', backgroundColor: '#EF4444', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer', fontSize: '0.9rem' }}>
+              className="btn btn-danger" style={{ fontSize: '0.9rem', padding: '0.5rem 1rem' }}>
               {bulkResetting ? 'Resetting...' : `Reset ${selectedIds.size} Password${selectedIds.size !== 1 ? 's' : ''}`}
             </button>
             {selectedIds.size > 0 && (
               <button onClick={() => setSelectedIds(new Set())}
-                style={{ padding: '0.5rem 1rem', backgroundColor: 'transparent', border: '1px solid #D1D5DB', borderRadius: 8, cursor: 'pointer', fontSize: '0.9rem', color: '#374151' }}>
+                className="btn-ghost" style={{ fontSize: '0.9rem', padding: '0.5rem 1rem' }}>
                 Clear Selection
               </button>
             )}
@@ -479,22 +477,22 @@ const AdminInvigilatorsPage: React.FC = () => {
           <div style={{ marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
               <div>
-                <strong style={{ color: '#065F46' }}>{bulkResetSummary?.succeeded || 0} succeeded</strong>
+                <strong style={{ color: 'var(--upsa-success)' }}>{bulkResetSummary?.succeeded || 0} succeeded</strong>
                 {bulkResetSummary && bulkResetSummary.failed > 0 && (
-                  <span style={{ color: '#D97706', marginLeft: '1rem' }}>
+                  <span style={{ color: 'var(--upsa-warning)', marginLeft: '1rem' }}>
                     ⚠ {bulkResetSummary.failed} failed
                   </span>
                 )}
               </div>
               <button onClick={downloadBulkResetCSV}
-                style={{ padding: '0.5rem 1rem', backgroundColor: '#2563EB', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}>
+                className="btn btn-secondary" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
                 📥 Download Results CSV
               </button>
             </div>
-            <div style={{ maxHeight: 400, overflowY: 'auto', border: '1px solid #e5e7eb', borderRadius: 8 }}>
+            <div style={{ maxHeight: 400, overflowY: 'auto', border: '1px solid var(--border)', borderRadius: 12 }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
                 <thead>
-                  <tr style={{ background: '#f9fafb', position: 'sticky', top: 0, borderBottom: '2px solid #e5e7eb' }}>
+                  <tr style={{ background: 'rgba(255,255,255,0.04)', position: 'sticky', top: 0, borderBottom: '2px solid var(--border)' }}>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>Email</th>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>Full Name</th>
                     <th style={{ padding: '0.6rem 0.5rem', textAlign: 'left' }}>New Password</th>
@@ -503,7 +501,7 @@ const AdminInvigilatorsPage: React.FC = () => {
                 </thead>
                 <tbody>
                   {bulkResetResults.map((r, i) => (
-                    <tr key={i} style={{ borderBottom: '1px solid #f3f4f6', backgroundColor: r.success ? '#F0FDF4' : '#FEF2F2' }}>
+                    <tr key={i} style={{ borderBottom: '1px solid var(--border)', backgroundColor: r.success ? '#134E4A' : '#7F1D1D' }}>
                       <td style={{ padding: '0.5rem', fontFamily: 'monospace' }}>{r.email}</td>
                       <td style={{ padding: '0.5rem' }}>{r.fullName}</td>
                       <td style={{ padding: '0.5rem' }}>
@@ -528,44 +526,48 @@ const AdminInvigilatorsPage: React.FC = () => {
 
         {/* Invigilators Table */}
         {loading ? (
-          <p style={{ color: '#6B7280' }}>Loading...</p>
+          <p style={{ color: 'var(--muted)' }}>Loading...</p>
         ) : invigilators.length === 0 ? (
-          <p style={{ color: '#6B7280' }}>No invigilators yet. Add one above.</p>
+          <p style={{ color: 'var(--muted)' }}>No invigilators yet. Add one above.</p>
         ) : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr style={{ borderBottom: '2px solid #e5e7eb', textAlign: 'left' }}>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280', width: '30px' }}>
+                <tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left' }}>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)', width: '30px' }}>
                     <input type="checkbox" checked={selectedIds.size === invigilators.length && invigilators.length > 0}
                       onChange={toggleSelectAll}
                       style={{ cursor: 'pointer' }} />
                   </th>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280' }}>Name</th>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280' }}>Email (Username)</th>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280' }}>Created</th>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280' }}>Password</th>
-                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: '#6B7280' }}></th>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Name</th>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Email (Username)</th>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Created</th>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Password</th>
+                  <th style={{ padding: '0.75rem 0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}></th>
                 </tr>
               </thead>
               <tbody>
                 {invigilators.map(inv => (
-                  <tr key={inv.id} style={{ borderBottom: '1px solid #f3f4f6', backgroundColor: selectedIds.has(inv.id) ? '#EFF6FF' : 'transparent' }}>
+                  <tr key={inv.id} className="table-row-hover" style={{ borderBottom: '1px solid var(--border)', backgroundColor: selectedIds.has(inv.id) ? 'rgba(255,182,6,0.08)' : 'transparent' }}>
                     <td style={{ padding: '0.6rem 0.5rem' }}>
                       <input type="checkbox" checked={selectedIds.has(inv.id)}
                         onChange={() => toggleInvigilatorSelection(inv.id)}
                         style={{ cursor: 'pointer' }} />
                     </td>
-                    <td style={{ padding: '0.6rem 0.5rem', fontWeight: 500 }}>{inv.full_name}</td>
-                    <td style={{ padding: '0.6rem 0.5rem', fontFamily: 'monospace', fontSize: '0.9rem', color: '#4F46E5' }}>{inv.username || inv.email || '—'}</td>
-                    <td style={{ padding: '0.6rem 0.5rem', color: '#6B7280', fontSize: '0.85rem' }}>{new Date(inv.created_at).toLocaleDateString()}</td>
+                    <td style={{ padding: '0.6rem 0.5rem', fontWeight: 500 }}>
+                      <div>{inv.full_name}</div>
+                      {inv.created_at && (
+                        <div style={{ fontSize: '0.75rem', color: '#FCD34D', marginTop: '0.25rem' }}>
+                          Created: {new Date(inv.created_at).toLocaleString()}
+                        </div>
+                      )}
+                    </td>
+                    <td style={{ padding: '0.6rem 0.5rem', fontFamily: 'monospace', fontSize: '0.9rem', color: 'var(--accent)' }}>{inv.username || inv.email || '—'}</td>
+                    <td style={{ padding: '0.6rem 0.5rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{new Date(inv.created_at).toLocaleDateString()}</td>
                     <td style={{ padding: '0.6rem 0.5rem', fontFamily: 'monospace' }}>
                       {inv.temp_password ? (
                         <div>
                           <code style={{ background: '#FFFBEB', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{inv.temp_password}</code>
-                          {inv.temp_password_expires_at && (
-                            <div style={{ fontSize: '0.75rem', color: '#92400E' }}>Expires: {new Date(inv.temp_password_expires_at).toLocaleString()}</div>
-                          )}
                         </div>
                       ) : (
                         '—'
@@ -574,13 +576,13 @@ const AdminInvigilatorsPage: React.FC = () => {
                     <td style={{ padding: '0.6rem 0.5rem', textAlign: 'right' }}>
                       <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
                         <button onClick={() => handleResetPassword(inv.id, inv.full_name)}
-                          style={{ background: '#DBEAFE', border: '1px solid #BFDBFE', color: '#2563EB', borderRadius: 6, padding: '0.35rem 0.75rem', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500 }}>
-                          Reset Password
-                        </button>
-                        <button onClick={() => handleDelete(inv.id, inv.full_name)}
-                          style={{ background: '#FEF2F2', border: '1px solid #FCA5A5', color: '#DC2626', borderRadius: 6, padding: '0.35rem 0.75rem', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 500 }}>
-                          Disable
-                        </button>
+                      className="btn-outline-action btn-outline-action--info">
+                      Reset Password
+                    </button>
+                    <button onClick={() => handleDelete(inv.id, inv.full_name)}
+                      className="btn-outline-action btn-outline-action--danger">
+                      Disable
+                    </button>
                       </div>
                     </td>
                   </tr>

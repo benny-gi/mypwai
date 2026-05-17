@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { useLocation } from 'react-router-dom';
+import { ThemeProvider } from './ThemeContext';
 import LoginPage from './components/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import StudentManagementPage from './pages/StudentManagementPage';
@@ -85,8 +86,8 @@ function AppContent() {
 
   if (sessionState === 'checking') {
     return (
-      <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', fontFamily: 'Segoe UI, sans-serif' }}>
-        <div style={{ padding: '1rem 1.5rem', borderRadius: 12, background: '#fff', boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}>
+      <div className="app-shell" style={{ minHeight: '100vh', display: 'grid', placeItems: 'center' }}>
+        <div style={{ padding: '1rem 1.5rem', borderRadius: 16, background: 'rgba(255,255,255,0.92)', boxShadow: '0 8px 24px rgba(37,99,235,0.12)' }}>
           Verifying session...
         </div>
       </div>
@@ -96,7 +97,7 @@ function AppContent() {
   return (
     <>
       {!isFullScreen && <Navbar />}
-      <div style={isFullScreen ? { padding: 0 } : { padding: '2rem', background: '#f7fafd', minHeight: '100vh' }}>
+      <div className={isFullScreen ? 'app-shell app-shell--full' : 'app-shell page-enter'} style={isFullScreen ? { padding: 0 } : { padding: '1.25rem', minHeight: '100vh', background: 'transparent' }}>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<SignInPage />} />
@@ -117,9 +118,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </ThemeProvider>
   );
 }
 

@@ -61,7 +61,7 @@ const SignInPage: React.FC = () => {
           }
         }
       `}</style>
-      <div className="signin-container" style={{ display: 'flex', height: '100vh', width: '100%', fontFamily: 'Segoe UI, sans-serif' }}>
+      <div className="signin-container page-enter" style={{ display: 'flex', height: '100vh', width: '100%', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif' }}>
         {/* Left Side - Image */}
         <div className="signin-sidebar" style={{
           flex: 1,
@@ -73,33 +73,38 @@ const SignInPage: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           minWidth: 0,
-        }}>
+          transition: 'filter 0.6s ease',
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.filter = 'brightness(1.15)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.filter = 'brightness(1)'; }}>
           <div style={{
             position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.68)',
-            display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: 'white'
+            backgroundColor: 'rgba(2,27,75,0.78)',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', color: '#F8FAFC'
           }}>
-            <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>Welcome Back</h1>
-            <p style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>"Excellence in every step"</p>
+            <h1 className="animate-fade-in-up delay-1" style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>Welcome</h1>
+            <p className="animate-fade-in-up delay-3" style={{ fontSize: '1.2rem', fontStyle: 'italic' }}>"Scholarship with Professionalism"</p>
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <div className="signin-form-wrapper" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb', minWidth: 0 }}>
-          <div style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '0.5rem', textAlign: 'center' }}>Sign In</h2>
-          <p style={{ color: '#666', textAlign: 'center', marginBottom: '2rem' }}>Access your dashboard</p>
+        <div className="signin-form-wrapper" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg)', minWidth: 0 }}>
+          <div className="animate-scale-in delay-2" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'var(--card)', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0,0,0,0.35)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', color: 'var(--text)', transition: 'box-shadow 0.3s ease, border-color 0.3s ease' }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,182,6,0.25)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.45), 0 0 24px rgba(255,182,6,0.06)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.35)'; }}>
+          <h2 className="animate-fade-in-up delay-3" style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--accent)', marginBottom: '0.5rem', textAlign: 'center' }}>Sign In</h2>
+          <p className="animate-fade-in-up delay-4" style={{ color: 'var(--muted)', textAlign: 'center', marginBottom: '2rem' }}>Access your dashboard</p>
           
           <form onSubmit={handleSubmit} autoComplete="off">
-            <div style={{ marginBottom: '1.25rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#333', fontWeight: 600 }}>Email</label>
-              <input type="email" name="username" value={form.username} onChange={handleChange} placeholder="Enter your email" autoComplete="off" style={{ width: '100%', padding: '0.75rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '1rem' }} required />
+            <div className="animate-fade-in-up delay-5" style={{ marginBottom: '1.25rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Email</label>
+              <input type="email" name="username" value={form.username} onChange={handleChange} placeholder="Enter your email" autoComplete="off" className="input" required />
             </div>
-            <div style={{ marginBottom: '1.25rem' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', color: '#333', fontWeight: 600 }}>Password</label>
+            <div className="animate-fade-in-up delay-6" style={{ marginBottom: '1.25rem' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Password</label>
               <div style={{ position: 'relative', marginBottom: '0.5rem' }}>
-                <input type={showPassword ? 'text' : 'password'} name="password" value={form.password} onChange={handleChange} style={{ width: '100%', padding: '0.75rem', paddingRight: '2.5rem', border: '1px solid #ddd', borderRadius: '6px', fontSize: '1rem', boxSizing: 'border-box' }} required />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: '#666', fontSize: '1.2rem' }}>
+                <input type={showPassword ? 'text' : 'password'} name="password" value={form.password} onChange={handleChange} placeholder="Enter your password" className="input" style={{ paddingRight: '2.5rem' }} required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--muted)', fontSize: '1.2rem' }}>
                   {showPassword ? '👁️' : '👁️‍🗨️'}
                 </button>
               </div>
@@ -108,12 +113,12 @@ const SignInPage: React.FC = () => {
                 </div>
               )}
             </div>
-            {error && <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-            <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.875rem', backgroundColor: '#4F46E5', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
+            {error && <div style={{ color: 'var(--upsa-danger)', marginBottom: '1rem', textAlign: 'center', animation: 'fadeIn 0.3s ease-out' }}>{error}</div>}
+            <button type="submit" disabled={loading} className="btn btn-primary animate-fade-in-up delay-7" style={{ width: '100%', justifyContent: 'center', fontSize: '1rem', padding: '0.875rem' }}>
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
-          <p style={{ textAlign: 'center', marginTop: '1.5rem', color: '#888', fontSize: '0.85rem' }}>
+          <p className="animate-fade-in-up delay-8" style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--muted)', fontSize: '0.85rem' }}>
             Invigilator access only. Sign in with the email and password provided by your administrator.
           </p>
         </div>
