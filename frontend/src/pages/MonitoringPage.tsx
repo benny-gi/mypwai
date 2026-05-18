@@ -1240,33 +1240,30 @@ const MonitoringPage: React.FC = () => {
   if (!data) return <div style={{ padding: '2rem' }}>Loading monitoring data...</div>;
 
   return (
-    <div style={{
+    <div className="page-enter" style={{
       minHeight: 'calc(100vh - 68px)',
       width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
       padding: '2rem'
     }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <h2 style={{ color: '#fff', marginBottom: '1.5rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Live Exam Monitoring</h2>
+        <h2 className="animate-fade-in-up" style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>Live Exam Monitoring</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', backdropFilter: 'blur(5px)' }}>
-            <h3 style={{ margin: 0, color: '#555' }}>Active Sessions</h3>
-            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#28a745', margin: '0.5rem 0' }}>{data.activeSessions}</p>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+            <h3 style={{ margin: 0, color: 'var(--muted)' }}>Active Sessions</h3>
+            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#5EEAD4', margin: '0.5rem 0' }}>{data.activeSessions}</p>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', backdropFilter: 'blur(5px)' }}>
-            <h3 style={{ margin: 0, color: '#555' }}>Devices Online</h3>
-            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#005fa3', margin: '0.5rem 0' }}>{data.devicesOnline}</p>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+            <h3 style={{ margin: 0, color: 'var(--muted)' }}>Devices Online</h3>
+            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#93C5FD', margin: '0.5rem 0' }}>{data.devicesOnline}</p>
           </div>
         </div>
 
-        <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', backdropFilter: 'blur(5px)' }}>
-          <h3 style={{ marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>Recent Activity Logs</h3>
+        <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+          <h3 style={{ marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem', color: 'var(--accent)' }}>Recent Activity Logs</h3>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {data.recentLogs.map((log: any, index: number) => (
-              <li key={index} style={{ padding: '0.75rem 0', borderBottom: index !== data.recentLogs.length - 1 ? '1px solid #f0f0f0' : 'none', display: 'flex', justifyContent: 'space-between' }}>
+              <li key={index} style={{ padding: '0.75rem 0', borderBottom: index !== data.recentLogs.length - 1 ? '1px solid var(--border)' : 'none', display: 'flex', justifyContent: 'space-between' }}>
                 <span>{log.event}</span>
                 <span style={{ color: '#888', fontSize: '0.9rem' }}>{log.time}</span>
               </li>
@@ -1274,7 +1271,7 @@ const MonitoringPage: React.FC = () => {
           </ul>
         </div>
 
-        <div style={{ marginTop: '2rem', background: 'rgba(15, 23, 42, 0.92)', color: '#fff', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 10px 24px rgba(15,23,42,0.18)' }}>
+        <div style={{ marginTop: '2rem', background: 'rgba(15, 23, 42, 0.92)', color: '#fff', padding: '1.5rem', borderRadius: '16px', boxShadow: '0 10px 24px rgba(15,23,42,0.18)' }}>
           <div style={{ fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#93C5FD', fontWeight: 700, marginBottom: '0.5rem' }}>
             AI Malpractice Detection
           </div>
@@ -1283,7 +1280,7 @@ const MonitoringPage: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '1rem' }}>
             <div>
               {flaggedStudentId && (
-                <div style={{ marginBottom: '0.9rem', background: 'rgba(127,29,29,0.28)', border: '1px solid rgba(248,113,113,0.45)', borderRadius: '10px', padding: '0.8rem 0.9rem', color: '#FEE2E2' }}>
+                <div style={{ marginBottom: '0.9rem', background: 'rgba(127,29,29,0.28)', border: '1px solid rgba(248,113,113,0.45)', borderRadius: '10px', padding: '0.8rem 0.9rem', color: '#FCA5A5' }}>
                   <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#FCA5A5', fontWeight: 700 }}>Flagged Student ID</div>
                   <div style={{ fontSize: '1.15rem', fontWeight: 800 }}>{flaggedStudentId}</div>
                   <div style={{ marginTop: '0.25rem', color: '#FECACA', fontSize: '0.86rem' }}>
@@ -1292,7 +1289,7 @@ const MonitoringPage: React.FC = () => {
                 </div>
               )}
 
-              <div style={{ position: 'relative', borderRadius: '12px', overflow: 'hidden', border: `2px solid ${lastAlert ? severityColor : 'rgba(148,163,184,0.35)'}`, background: '#020617', minHeight: '270px' }}>
+              <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', border: `2px solid ${lastAlert ? severityColor : 'rgba(148,163,184,0.35)'}`, background: '#020617', minHeight: '270px' }}>
                 <video ref={videoRef} autoPlay muted playsInline style={{ width: '100%', display: 'block', minHeight: '270px', objectFit: 'cover' }} />
                 <canvas
                   ref={canvasRef}
@@ -1305,17 +1302,17 @@ const MonitoringPage: React.FC = () => {
                   }}
                 />
                 {!cameraActive && (
-                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#CBD5E1', background: 'rgba(2, 6, 23, 0.72)' }}>
+                  <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', background: 'rgba(2, 6, 23, 0.72)' }}>
                     Camera is offline
                   </div>
                 )}
               </div>
 
               <div style={{ display: 'flex', gap: '0.7rem', marginTop: '0.85rem', flexWrap: 'wrap' }}>
-                <button onClick={cameraActive ? stopCamera : startCamera} style={{ background: cameraActive ? '#1E3A8A' : '#1D4ED8', border: 'none', color: '#fff', borderRadius: '8px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: 'pointer' }}>
+                <button onClick={cameraActive ? stopCamera : startCamera} style={{ background: cameraActive ? '#1E3A8A' : '#1D4ED8', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: 'pointer' }}>
                   {cameraActive ? 'Stop Camera' : 'Start Camera'}
                 </button>
-                <button onClick={() => setAlertToneEnabled((v) => !v)} style={{ background: '#1D4ED8', border: '1px solid #1E3A8A', color: '#E2E8F0', borderRadius: '8px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: 'pointer' }}>
+                <button onClick={() => setAlertToneEnabled((v) => !v)} style={{ background: '#1D4ED8', border: '1px solid #1E3A8A', color: 'var(--text)', borderRadius: '12px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: 'pointer' }}>
                   Alert Tone: {alertToneEnabled ? 'On' : 'Off'}
                 </button>
                 <button
@@ -1324,8 +1321,8 @@ const MonitoringPage: React.FC = () => {
                   style={{
                     background: useAwsRekognition ? '#1D4ED8' : '#1E3A8A',
                     border: '1px solid #1E3A8A',
-                    color: '#E2E8F0',
-                    borderRadius: '8px',
+                    color: 'var(--text)',
+                    borderRadius: '12px',
                     padding: '0.55rem 0.95rem',
                     fontWeight: 700,
                     cursor: awsConfigured ? 'pointer' : 'not-allowed',
@@ -1334,16 +1331,16 @@ const MonitoringPage: React.FC = () => {
                 >
                   AWS Rekognition: {awsConfigured ? (useAwsRekognition ? 'On' : 'Off') : 'Unavailable'}
                 </button>
-                <button onClick={handleInitializeCollection} disabled={initializingCollection} style={{ background: '#1D4ED8', border: 'none', color: '#fff', borderRadius: '8px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: initializingCollection ? 'not-allowed' : 'pointer', opacity: initializingCollection ? 0.7 : 1 }}>
+                <button onClick={handleInitializeCollection} disabled={initializingCollection} style={{ background: '#1D4ED8', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: initializingCollection ? 'not-allowed' : 'pointer', opacity: initializingCollection ? 0.7 : 1 }}>
                   {initializingCollection ? 'Initializing Collection...' : 'Init Rekognition Collection'}
                 </button>
-                <button onClick={downloadAlertLog} disabled={alerts.length === 0} style={{ background: '#1D4ED8', border: 'none', color: '#fff', borderRadius: '8px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: alerts.length > 0 ? 'pointer' : 'not-allowed', opacity: alerts.length > 0 ? 1 : 0.6 }}>
+                <button onClick={downloadAlertLog} disabled={alerts.length === 0} style={{ background: '#1D4ED8', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.55rem 0.95rem', fontWeight: 700, cursor: alerts.length > 0 ? 'pointer' : 'not-allowed', opacity: alerts.length > 0 ? 1 : 0.6 }}>
                   Export JSON Log
                 </button>
               </div>
 
               {cameraError && (
-                <div style={{ marginTop: '0.75rem', color: '#FCA5A5', background: 'rgba(127,29,29,0.25)', border: '1px solid rgba(248,113,113,0.35)', borderRadius: '8px', padding: '0.6rem 0.75rem' }}>
+                <div style={{ marginTop: '0.75rem', color: '#FCA5A5', background: 'rgba(127,29,29,0.25)', border: '1px solid rgba(248,113,113,0.35)', borderRadius: '12px', padding: '0.6rem 0.75rem' }}>
                   {cameraError}
                 </div>
               )}
@@ -1363,38 +1360,38 @@ const MonitoringPage: React.FC = () => {
             </div>
 
             <div style={{ display: 'grid', gap: '0.75rem' }}>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Absence Duration</div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 800 }}>{absenceSeconds}s</div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.82rem' }}>Threshold: {absenceThresholdSeconds}s</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>Threshold: {absenceThresholdSeconds}s</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Movement Score</div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 800 }}>{movementScore}</div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.82rem' }}>Burst threshold: {movementThreshold}px ({movementBurstsRequired} bursts in {(movementEventWindowMs / 1000).toFixed(0)}s)</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>Burst threshold: {movementThreshold}px ({movementBurstsRequired} bursts in {(movementEventWindowMs / 1000).toFixed(0)}s)</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Alerts Raised</div>
                 <div style={{ fontSize: '1.8rem', fontWeight: 800 }}>{alerts.length}</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Risk Tier</div>
                 <div style={{ fontSize: '1.2rem', fontWeight: 800, textTransform: 'capitalize' }}>{riskTier}</div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.82rem' }}>Risk score: {riskScore}/100</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>Risk score: {riskScore}/100</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>AWS Status</div>
                 <div style={{ fontSize: '1.2rem', fontWeight: 800, textTransform: 'capitalize' }}>{awsStatus}</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Collection</div>
                 <div style={{ fontSize: '1.2rem', fontWeight: 800, textTransform: 'capitalize' }}>{collectionStatus}</div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.82rem' }}>Database Enrolled: {localFaceProfiles.length} | AWS Indexed: {collectionFaceCount}</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>Database Enrolled: {localFaceProfiles.length} | AWS Indexed: {collectionFaceCount}</div>
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
+              <div style={{ background: 'var(--border)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.8rem' }}>
                 <div style={{ color: '#93C5FD', fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Recognized Student</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800 }}>{identifiedStudentId !== 'Unknown' ? identifiedStudentId : latestRecognizedStudentIdRef.current || 'Unknown'}</div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.82rem' }}>
+                <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>
                   {identifiedStudentIds.length > 0 ? `Enrolled students in frame: ${identifiedStudentIds.join(', ')}` : 'Shown when the live camera matches an enrolled student.'}
                 </div>
               </div>
@@ -1403,20 +1400,20 @@ const MonitoringPage: React.FC = () => {
 
           <div style={{ marginTop: '1rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem' }}>
             <h4 style={{ marginTop: 0, marginBottom: '0.8rem' }}>Malpractice Event Log</h4>
-            {alerts.length === 0 && <div style={{ color: '#94A3B8' }}>No malpractice alerts yet. Start camera to begin monitoring.</div>}
+            {alerts.length === 0 && <div style={{ color: 'var(--text-secondary)' }}>No malpractice alerts yet. Start camera to begin monitoring.</div>}
             {alerts.slice(0, 6).map((alert) => (
               <div key={alert.id} style={{ padding: '0.55rem 0', borderBottom: '1px solid rgba(148,163,184,0.18)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
                   <div style={{ fontWeight: 700 }}>{alert.eventType.replace(/_/g, ' ')}</div>
-                  <div style={{ color: '#CBD5E1', fontSize: '0.85rem' }}>{new Date(alert.timestamp).toLocaleString()}</div>
+                  <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>{new Date(alert.timestamp).toLocaleString()}</div>
                 </div>
-                <div style={{ color: '#CBD5E1', fontSize: '0.9rem' }}>{alert.detail}</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>{alert.detail}</div>
                 {(alert.eventType === 'excessive_movement' || alert.eventType === 'candidate_interaction' || alert.eventType === 'proxy_face_mismatch') && (
                   <div style={{ color: '#FCA5A5', fontSize: '0.9rem', fontWeight: 700, marginTop: '0.2rem' }}>
                     Flagged Student: {alert.studentId || 'unknown'}
                   </div>
                 )}
-                <div style={{ color: '#94A3B8', fontSize: '0.78rem' }}>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem' }}>
                   student={alert.studentId || 'unknown'} faceId={alert.faceId || 'unknown'} severity={alert.severity} score={alert.suspicionScore} threshold={alert.threshold} camera={alert.cameraId}
                 </div>
               </div>
@@ -1425,7 +1422,7 @@ const MonitoringPage: React.FC = () => {
 
           {snapshotDataUrl && (
             <div style={{ marginTop: '1rem' }}>
-              <div style={{ marginBottom: '0.4rem', color: '#CBD5E1', fontSize: '0.88rem' }}>Latest evidence snapshot</div>
+              <div style={{ marginBottom: '0.4rem', color: 'var(--muted)', fontSize: '0.88rem' }}>Latest evidence snapshot</div>
               <img src={snapshotDataUrl} alt="Latest malpractice evidence" style={{ width: '240px', borderRadius: '10px', border: '1px solid rgba(148,163,184,0.35)' }} />
             </div>
           )}
@@ -1433,18 +1430,18 @@ const MonitoringPage: React.FC = () => {
           <div style={{ marginTop: '1.2rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
               <h4 style={{ margin: 0 }}>Enrolled Faces</h4>
-              <button onClick={refreshEnrolledFaces} style={{ background: 'rgba(148,163,184,0.18)', border: '1px solid rgba(148,163,184,0.3)', color: '#E2E8F0', borderRadius: '8px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+              <button onClick={refreshEnrolledFaces} style={{ background: 'rgba(148,163,184,0.18)', border: '1px solid rgba(148,163,184,0.3)', color: 'var(--text)', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
                 Refresh
               </button>
             </div>
 
             {loadingFaces ? (
-              <div style={{ color: '#94A3B8', marginTop: '0.8rem' }}>Loading enrolled faces...</div>
+              <div style={{ color: 'var(--text-secondary)', marginTop: '0.8rem' }}>Loading enrolled faces...</div>
             ) : enrolledFaces.length === 0 ? (
-              <div style={{ color: '#94A3B8', marginTop: '0.8rem' }}>No faces are enrolled yet.</div>
+              <div style={{ color: 'var(--text-secondary)', marginTop: '0.8rem' }}>No faces are enrolled yet.</div>
             ) : (
               <div style={{ overflowX: 'auto', marginTop: '0.8rem' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', color: '#E2E8F0' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text)' }}>
                   <thead>
                     <tr style={{ textAlign: 'left', borderBottom: '1px solid rgba(148,163,184,0.25)' }}>
                       <th style={{ padding: '0.65rem 0.5rem' }}>Student ID</th>
@@ -1477,12 +1474,12 @@ const MonitoringPage: React.FC = () => {
                           {face.faceId.startsWith('local-') ? (
                             <button
                               onClick={() => navigate('/students')}
-                              style={{ background: '#0EA5E9', border: 'none', color: '#fff', borderRadius: '8px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}
+                              style={{ background: '#0EA5E9', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}
                             >
                               Manage
                             </button>
                           ) : (
-                            <button onClick={() => handleDeleteFace(face.faceId)} style={{ background: '#EF4444', border: 'none', color: '#fff', borderRadius: '8px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+                            <button onClick={() => handleDeleteFace(face.faceId)} style={{ background: '#EF4444', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
                               Delete
                             </button>
                           )}

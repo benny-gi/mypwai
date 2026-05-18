@@ -82,22 +82,22 @@ const SyncStatusBanner: React.FC = () => {
       alignItems: 'center',
       fontSize: '13px',
       fontWeight: 500,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: "'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif",
       transition: 'all 0.3s ease',
-      boxShadow: '0 -2px 10px rgba(0,0,0,0.1)',
+      boxShadow: '0 -4px 20px rgba(0,0,0,0.35)',
     };
 
     switch (status.type) {
       case 'syncing':
-        return { ...base, backgroundColor: '#DBEAFE', color: '#1E40AF', borderTop: '2px solid #3B82F6' };
+        return { ...base, backgroundColor: '#1E3A5F', color: '#93C5FD', borderTop: '2px solid #3B82F6' };
       case 'success':
-        return { ...base, backgroundColor: '#DCFCE7', color: '#166534', borderTop: '2px solid #22C55E' };
+        return { ...base, backgroundColor: '#134E4A', color: '#5EEAD4', borderTop: '2px solid #0F766E' };
       case 'error':
-        return { ...base, backgroundColor: '#FEE2E2', color: '#991B1B', borderTop: '2px solid #EF4444' };
+        return { ...base, backgroundColor: '#7F1D1D', color: '#FCA5A5', borderTop: '2px solid #DC2626' };
       case 'offline':
-        return { ...base, backgroundColor: '#FEF3C7', color: '#92400E', borderTop: '2px solid #F59E0B' };
+        return { ...base, backgroundColor: '#78350F', color: '#FCD34D', borderTop: '2px solid #D97706' };
       default:
-        return { ...base, backgroundColor: '#F8FAFC', color: '#64748B', borderTop: '2px solid #CBD5E1' };
+        return { ...base, backgroundColor: 'var(--card)', color: 'var(--muted)', borderTop: '2px solid var(--border)' };
     }
   };
 
@@ -107,7 +107,7 @@ const SyncStatusBanner: React.FC = () => {
   }
 
   return (
-    <div style={getStyle()}>
+    <div className="sync-banner-enter" style={getStyle()}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {status.type === 'syncing' && (
           <span style={{

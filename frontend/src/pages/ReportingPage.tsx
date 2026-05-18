@@ -95,15 +95,8 @@ const ReportingPage: React.FC = () => {
   };
 
   return (
-    <div style={{
-      minHeight: 'calc(100vh - 68px)',
-      width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      padding: '2rem'
-    }}>
-      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div className="page-enter" style={{ minHeight: 'calc(100vh - 68px)', width: '100%' }}>
+      <div className="page-container">
       <style>{`
         @media print {
           .navbar, .no-print { display: none !important; }
@@ -111,29 +104,29 @@ const ReportingPage: React.FC = () => {
           .print-container { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
         }
       `}</style>
-      <h2 style={{ color: '#fff', marginBottom: '1.5rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Attendance Reports</h2>
+      <h2 className="animate-fade-in-up" style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Attendance Reports</h2>
       
-      <form className="no-print" onSubmit={handleSearch} style={{ background: 'rgba(255, 255, 255, 0.95)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', display: 'flex', gap: '1rem', alignItems: 'flex-end', marginBottom: '2rem', backdropFilter: 'blur(5px)' }}>
+      <form className="no-print card" onSubmit={handleSearch} style={{ padding: '1rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-end', marginBottom: '1.25rem', borderTop: '3px solid var(--upsa-navy)' }}>
         <div style={{ flex: 1 }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Course Code</label>
-          <input type="text" value={filters.course} onChange={e => setFilters({...filters, course: e.target.value})} style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }} />
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Course Code</label>
+          <input type="text" value={filters.course} onChange={e => setFilters({...filters, course: e.target.value})} className="input" style={{ width: '100%' }} />
         </div>
         <div style={{ flex: 1 }}>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Date</label>
-          <input type="date" value={filters.date} onChange={e => setFilters({...filters, date: e.target.value})} style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }} />
+          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Date</label>
+          <input type="date" value={filters.date} onChange={e => setFilters({...filters, date: e.target.value})} className="input" style={{ width: '100%' }} />
         </div>
-        <button type="submit" disabled={loading} style={{ padding: '0.6rem 1.5rem', background: '#005fa3', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>{loading ? 'Loading...' : 'Generate Report'}</button>
+        <button type="submit" disabled={loading} className="btn btn-secondary">{loading ? 'Loading...' : 'Generate Report'}</button>
       </form>
 
       {searched && (
         <>
         <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-          <div style={{ color: '#fff', fontSize: '1.1rem', textShadow: '1px 1px 2px rgba(0,0,0,0.8)' }}>
+          <div style={{ fontSize: '1.05rem', color: 'var(--text)' }}>
             Report for <strong>{filters.course}</strong> on <strong>{new Date(filters.date).toLocaleDateString()}</strong>
           </div>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button onClick={handleExport} style={{ padding: '0.5rem 1rem', background: '#10B981', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Export Text</button>
-            <button onClick={() => window.print()} style={{ padding: '0.5rem 1rem', background: '#374151', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Print Report</button>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn btn-ghost" onClick={handleExport}>Export Text</button>
+            <button className="btn" onClick={() => window.print()}>Print Report</button>
           </div>
         </div>
         {aiReport && (
@@ -146,73 +139,73 @@ const ReportingPage: React.FC = () => {
               <div style={{ flex: 1, minWidth: '220px' }}>
                 <div style={{ fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#FCA5A5', fontWeight: 700, marginBottom: '0.5rem' }}>Risk Flags</div>
                 {(aiReport.riskFlags?.length ? aiReport.riskFlags : ['No major risk flags in the current dataset.']).map((flag: string, index: number) => (
-                  <div key={index} style={{ marginBottom: '0.5rem', color: '#E5E7EB' }}>{flag}</div>
+                  <div key={index} style={{ marginBottom: '0.5rem', color: 'var(--text)' }}>{flag}</div>
                 ))}
               </div>
             </div>
             <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-              <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '12px', padding: '1rem' }}>
+              <div style={{ background: 'var(--border)', borderRadius: '16px', padding: '1rem' }}>
                 <div style={{ color: '#86EFAC', fontWeight: 700, marginBottom: '0.5rem' }}>Recommendations</div>
                 {(aiReport.recommendations || []).map((item: string, index: number) => (
-                  <div key={index} style={{ marginBottom: '0.45rem', color: '#E2E8F0' }}>{item}</div>
+                  <div key={index} style={{ marginBottom: '0.45rem', color: 'var(--text)' }}>{item}</div>
                 ))}
               </div>
-              <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: '12px', padding: '1rem' }}>
+              <div style={{ background: 'var(--border)', borderRadius: '16px', padding: '1rem' }}>
                 <div style={{ color: '#FDE68A', fontWeight: 700, marginBottom: '0.5rem' }}>Absent Today</div>
                 {(aiReport.absentToday?.length ? aiReport.absentToday.slice(0, 6) : ['No absences detected.']).map((item: string, index: number) => (
-                  <div key={index} style={{ marginBottom: '0.45rem', color: '#E2E8F0' }}>{item}</div>
+                  <div key={index} style={{ marginBottom: '0.45rem', color: 'var(--text)' }}>{item}</div>
                 ))}
               </div>
             </div>
           </div>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Total Students</div>
-            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#1F2937' }}>{total}</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Total Students</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text)' }}>{total}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Present</div>
-            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#10B981' }}>{present}</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Present</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#5EEAD4' }}>{present}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Absent</div>
-            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#EF4444' }}>{absent}</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Absent</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#FCA5A5' }}>{absent}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Attendance Rate</div>
-            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#4F46E5' }}>{percentage}%</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Attendance Rate</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--accent)' }}>{percentage}%</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>First Arrival</div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#059669' }}>{firstArrival}</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>First Arrival</div>
+            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#5EEAD4' }}>{firstArrival}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Last Arrival</div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#D97706' }}>{lastArrival}</div>
+          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+            <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Last Arrival</div>
+            <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#FCD34D' }}>{lastArrival}</div>
           </div>
         </div>
 
-        <div style={{ marginBottom: '2rem', background: 'rgba(229, 231, 235, 0.8)', borderRadius: '9999px', height: '24px', overflow: 'hidden', backdropFilter: 'blur(5px)', display: 'flex' }}>
+        <div style={{ marginBottom: '2rem', background: 'var(--border)', borderRadius: '9999px', height: '24px', overflow: 'hidden', display: 'flex' }}>
           <div style={{ 
             width: `${percentage}%`, 
-            background: '#10B981',
+            background: 'var(--upsa-success)',
             height: '100%',
             display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.8rem', fontWeight: 'bold',
             transition: 'width 0.5s ease-in-out'
           }}>{percentage > 5 && `${percentage}%`}</div>
           <div style={{ 
             width: `${100 - percentage}%`, 
-            background: '#EF4444',
+            background: 'var(--upsa-danger)',
             height: '100%',
             display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: '0.8rem', fontWeight: 'bold',
             transition: 'width 0.5s ease-in-out'
           }}>{(100 - percentage) > 5 && `${100 - percentage}%`}</div>
         </div>
 
-        <div style={{ background: 'rgba(255, 255, 255, 0.95)', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', overflow: 'hidden', backdropFilter: 'blur(5px)' }}>
-          <div className="no-print" style={{ padding: '1rem', borderBottom: '1px solid #e9ecef', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#4B5563', marginRight: '0.5rem' }}>Filter:</span>
+        <div style={{ background: 'var(--card)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', overflow: 'hidden', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+          <div className="no-print" style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-secondary)', marginRight: '0.5rem' }}>Filter:</span>
             {['All', 'Present', 'Absent'].map(status => (
               <button
                 key={status}
@@ -220,9 +213,9 @@ const ReportingPage: React.FC = () => {
                 style={{
                   padding: '0.4rem 1rem',
                   borderRadius: '9999px',
-                  border: '1px solid ' + (statusFilter === status ? '#005fa3' : '#D1D5DB'),
-                  background: statusFilter === status ? '#005fa3' : 'transparent',
-                  color: statusFilter === status ? '#fff' : '#374151',
+                  border: '1px solid ' + (statusFilter === status ? 'var(--accent)' : 'var(--border)'),
+                  background: statusFilter === status ? 'var(--accent)' : 'transparent',
+                  color: statusFilter === status ? '#fff' : 'var(--text-secondary)',
                   cursor: 'pointer',
                   fontSize: '0.85rem',
                   fontWeight: 500,
@@ -234,28 +227,28 @@ const ReportingPage: React.FC = () => {
             ))}
           </div>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead style={{ background: '#f8f9fa', borderBottom: '2px solid #e9ecef' }}>
+            <thead style={{ background: 'rgba(255,255,255,0.04)', borderBottom: '2px solid var(--border)' }}>
               <tr>
-                <th style={{ padding: '1rem', textAlign: 'left', color: '#495057' }}>Student ID</th>
-                <th style={{ padding: '1rem', textAlign: 'left', color: '#495057' }}>Name</th>
-                <th style={{ padding: '1rem', textAlign: 'left', color: '#495057' }}>Status</th>
-                <th style={{ padding: '1rem', textAlign: 'left', color: '#495057' }}>Time</th>
+                <th style={{ padding: '1rem', textAlign: 'left', color: 'var(--text-secondary)' }}>Student ID</th>
+                <th style={{ padding: '1rem', textAlign: 'left', color: 'var(--text-secondary)' }}>Name</th>
+                <th style={{ padding: '1rem', textAlign: 'left', color: 'var(--text-secondary)' }}>Status</th>
+                <th style={{ padding: '1rem', textAlign: 'left', color: 'var(--text-secondary)' }}>Time</th>
               </tr>
             </thead>
             <tbody>
               {displayedReports.map((r, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid #f0f0f0' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
                   <td style={{ padding: '1rem' }}>{r.studentId}</td>
                   <td style={{ padding: '1rem' }}>{r.name}</td>
                   <td style={{ padding: '1rem' }}>
-                    <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.85rem', background: r.status === 'Present' ? '#d4edda' : '#f8d7da', color: r.status === 'Present' ? '#155724' : '#721c24' }}>
+                    <span style={{ padding: '4px 8px', borderRadius: '4px', fontSize: '0.85rem', background: r.status === 'Present' ? '#134E4A' : '#7F1D1D', color: r.status === 'Present' ? '#5EEAD4' : '#FCA5A5' }}>
                       {r.status}
                     </span>
                   </td>
                   <td style={{ padding: '1rem' }}>{r.time}</td>
                 </tr>
               ))}
-              {displayedReports.length === 0 && <tr><td colSpan={4} style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>No records found for this criteria.</td></tr>}
+              {displayedReports.length === 0 && <tr><td colSpan={4} style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>No records found for this criteria.</td></tr>}
             </tbody>
           </table>
         </div>

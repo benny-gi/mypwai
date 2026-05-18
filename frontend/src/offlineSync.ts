@@ -10,10 +10,13 @@ import { initDB, persistDBBackup } from './db';
 import { pushAllToMySQL } from './apiExtra';
 
 const SYNC_INTERVAL_MS = 30000; // Check every 30 seconds
-const BACKEND_CHECK_ENDPOINT = `${window.location.protocol}//${window.location.hostname}:4000/api/attendance/students`;
+const BACKEND_CHECK_ENDPOINT = '/api/health';
 const BACKEND_CHECK_ALTERNATES = [
-  'http://127.0.0.1:4000/api/attendance/students',
-  'http://localhost:4000/api/attendance/students',
+  'http://127.0.0.1:4007/api/health',
+  'http://localhost:4007/api/health',
+  `${window.location.protocol}//${window.location.hostname}:4000/api/health`,
+  'http://127.0.0.1:4000/api/health',
+  'http://localhost:4000/api/health',
 ];
 
 let syncIntervalId: ReturnType<typeof setInterval> | null = null;
