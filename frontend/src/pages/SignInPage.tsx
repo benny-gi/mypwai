@@ -89,9 +89,7 @@ const SignInPage: React.FC = () => {
 
         {/* Right Side - Form */}
         <div className="signin-form-wrapper" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg)', minWidth: 0 }}>
-          <div className="animate-scale-in delay-2" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'var(--card)', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0,0,0,0.35)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', color: 'var(--text)', transition: 'box-shadow 0.3s ease, border-color 0.3s ease' }}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,182,6,0.25)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(0,0,0,0.45), 0 0 24px rgba(255,182,6,0.06)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.35)'; }}>
+          <div className="animate-scale-in delay-2 card-accent-hover" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'var(--card)', borderRadius: '16px', border: '1px solid var(--border)', color: 'var(--text)' }}>
           <h2 className="animate-fade-in-up delay-3" style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--accent)', marginBottom: '0.5rem', textAlign: 'center' }}>Sign In</h2>
           <p className="animate-fade-in-up delay-4" style={{ color: 'var(--muted)', textAlign: 'center', marginBottom: '2rem' }}>Access your dashboard</p>
           

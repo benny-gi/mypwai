@@ -7,7 +7,6 @@ const cardStyle: React.CSSProperties = {
   padding: '2rem',
   borderRadius: '16px',
   backgroundColor: 'var(--card)',
-  boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
   border: '1px solid var(--border)',
   display: 'flex',
   flexDirection: 'column',
@@ -651,7 +650,7 @@ const DashboardPage: React.FC = () => {
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
         
         {/* Recent Activity */}
-        <div className="card table-card hover-lift">
+        <div className="card table-card">
             <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: 'var(--accent)', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>Recent Activity</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {monitoring.recentLogs.map((log: any, i: number) => (
@@ -668,7 +667,7 @@ const DashboardPage: React.FC = () => {
 
         {/* System Status & Quick Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div className="card table-card hover-lift">
+          <div className="card table-card">
                 <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: 'var(--accent)' }}>System Status</h3>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border)' }}>
                     <span style={{ color: 'var(--muted)' }}>Active Exam Sessions</span>
@@ -680,9 +679,7 @@ const DashboardPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className="animate-scale-in delay-5" style={{ background: 'linear-gradient(135deg, #00004E 0%, #1E3A8A 30%, #F27229 100%)', borderRadius: '16px', padding: '1.25rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 78, 0.15), 0 4px 6px -2px rgba(0, 0, 78, 0.08)', color: 'white', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 16px 28px -4px rgba(0,0,78,0.3)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 78, 0.15), 0 4px 6px -2px rgba(0, 0, 78, 0.08)'; }}>
+            <div className="animate-scale-in delay-5 card-accent-hover" style={{ background: 'linear-gradient(135deg, #00004E 0%, #1E3A8A 30%, #F27229 100%)', borderRadius: '16px', padding: '1.25rem', color: 'white' }}>
                 <h3 style={{ marginTop: 0, color: 'white', marginBottom: '1.5rem' }}>Quick Actions</h3>
                 <button onClick={() => navigate('/enroll')} style={{ display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Enroll New Student</button>
                 <button onClick={() => navigate('/exam-setup')} style={{ display: 'block', width: '100%', padding: '0.75rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Schedule Exam Session</button>

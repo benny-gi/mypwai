@@ -289,8 +289,34 @@ export const login = async (username: string, password: string) => {
 };
 
 export const validateAuthSession = async () => {
-  const response = await requestAuth('/me', { method: 'GET' });
-  return response.json();
+  try {
+    const response = await requestAuth('/me', { method: 'GET' });
+    return response.json();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '';
+    const backendUnavailable = /Unable to reach backend auth API|Network request failed|Failed to fetch/i.test(message);
+
+    if (backendUnavailable) {
+      // Backend is unreachable — trust the locally stored session
+      const username = localStorage.getItem('username');
+      const email = localStorage.getItem('email');
+      const role = localStorage.getItem('userRole');
+      if (username) {
+        return {
+          success: true,
+          user: {
+            username,
+            email: email || username,
+            fullName: username,
+            role: role || 'invigilator',
+          },
+        };
+      }
+    }
+
+    // Re-throw explicit auth failures (401, 403, invalid token, etc.)
+    throw error;
+  }
 };
 
 

@@ -8,8 +8,7 @@ const cardStyle: React.CSSProperties = {
   background: 'var(--card)',
   borderRadius: '16px',
   border: '1px solid var(--border)',
-  borderTop: '3px solid var(--upsa-navy)',
-  boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+  transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease',
 };
 
 const FingerprintEnrollmentPage: React.FC = () => {
@@ -92,20 +91,25 @@ const FingerprintEnrollmentPage: React.FC = () => {
       setDeviceConnected(true);
       setDeviceInfo(await ScannerService.getDeviceInfo());
       setStatus('Fingerprint scanner is ready for enrollment.');
+      return true;
     } catch (error) {
       setDeviceConnected(false);
       setDeviceInfo(null);
       setStatus(error instanceof Error ? error.message : 'Fingerprint support check failed');
+      return false;
     }
   };
 
   const handleEnroll = async () => {
+    if (!deviceConnected) {
+      const connected = await connectScanner();
+      if (!connected) {
+        return;
+      }
+    }
+
     if (!studentId.trim()) {
       setStatus('Enter a student ID before starting enrollment.');
-      return;
-    }
-    if (!deviceConnected) {
-      setStatus('Connect a fingerprint scanner before starting enrollment.');
       return;
     }
 
@@ -162,7 +166,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-          <div className="animate-scale-in delay-2" style={{ ...cardStyle, padding: '1.5rem' }}>
+          <div className="animate-scale-in delay-2 card-accent-hover" style={{ ...cardStyle, padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
               <div>
                 <div style={{ color: 'var(--accent)', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -237,18 +241,18 @@ const FingerprintEnrollmentPage: React.FC = () => {
             </div>
 
             <div style={{ marginTop: '1rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#475569', fontWeight: 700, marginBottom: '0.45rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--muted)', fontWeight: 700, marginBottom: '0.45rem' }}>
                 <span>Enrollment progress</span>
                 <span>{scanProgress}%</span>
               </div>
-              <div style={{ width: '100%', height: '12px', borderRadius: '999px', background: 'var(--text)', overflow: 'hidden' }}>
+              <div style={{ width: '100%', height: '12px', borderRadius: '999px', background: 'var(--border)', overflow: 'hidden' }}>
                 <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, var(--upsa-success), var(--upsa-success))', transition: 'width 0.2s ease' }} />
               </div>
             </div>
           </div>
 
           <div className="animate-scale-in delay-3" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <div style={{ ...cardStyle, padding: '1.35rem' }}>
+            <div className="card-accent-hover" style={{ ...cardStyle, padding: '1.35rem' }}>
               <h3 style={{ marginTop: 0, color: 'var(--accent)', fontSize: '1.15rem', fontWeight: 600 }}>Enrollment Controls</h3>
               <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)', fontWeight: 700 }}>Student ID</label>
               <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -263,14 +267,15 @@ const FingerprintEnrollmentPage: React.FC = () => {
                 />
                 <button
                   onClick={handleEnroll}
-                  disabled={loading || !deviceConnected}
+                  disabled={loading}
+                  className="btn-lift"
                   style={{
                     padding: '0 1.25rem',
                     border: 'none',
                     borderRadius: '16px',
-                    background: loading || !deviceConnected ? '#334155' : 'var(--accent)',
-                    color: loading || !deviceConnected ? 'var(--text-secondary)' : '#00004E',
-                    cursor: loading || !deviceConnected ? 'not-allowed' : 'pointer',
+                    background: loading ? 'var(--input-bg)' : 'var(--accent)',
+                    color: loading ? 'var(--muted)' : 'var(--upsa-navy)',
+                    cursor: loading ? 'not-allowed' : 'pointer',
                     fontWeight: 800,
                     minWidth: '130px',
                   }}
@@ -306,7 +311,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
               <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <button
                   onClick={connectScanner}
-                  disabled={loading || !deviceConnected}
+                  disabled={loading || deviceConnected}
                   className="btn-outline-action"
                 >
                   Check fingerprint support
@@ -324,7 +329,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
         </div>
 
         {status && (
-          <div style={{
+          <div className="card-accent-hover" style={{
             marginTop: '1.5rem',
             ...cardStyle,
             padding: '1rem 1.25rem',

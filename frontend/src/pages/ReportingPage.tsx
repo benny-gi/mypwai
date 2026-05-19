@@ -106,7 +106,7 @@ const ReportingPage: React.FC = () => {
       `}</style>
       <h2 className="animate-fade-in-up" style={{ marginBottom: '1rem', color: 'var(--accent)' }}>Attendance Reports</h2>
       
-      <form className="no-print card" onSubmit={handleSearch} style={{ padding: '1rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-end', marginBottom: '1.25rem', borderTop: '3px solid var(--upsa-navy)' }}>
+      <form className="no-print card card-accent-hover" onSubmit={handleSearch} style={{ padding: '1rem', display: 'flex', gap: '0.75rem', alignItems: 'flex-end', marginBottom: '1.25rem' }}>
         <div style={{ flex: 1 }}>
           <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Course Code</label>
           <input type="text" value={filters.course} onChange={e => setFilters({...filters, course: e.target.value})} className="input" style={{ width: '100%' }} />
@@ -160,27 +160,27 @@ const ReportingPage: React.FC = () => {
           </div>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Total Students</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text)' }}>{total}</div>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Present</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: '#5EEAD4' }}>{present}</div>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Absent</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: '#FCA5A5' }}>{absent}</div>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Attendance Rate</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--accent)' }}>{percentage}%</div>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>First Arrival</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#5EEAD4' }}>{firstArrival}</div>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)', textAlign: 'center' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', textAlign: 'center' }}>
             <div style={{ fontSize: '0.9rem', color: 'var(--muted)', fontWeight: 700 }}>Last Arrival</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#FCD34D' }}>{lastArrival}</div>
           </div>
@@ -203,7 +203,7 @@ const ReportingPage: React.FC = () => {
           }}>{(100 - percentage) > 5 && `${100 - percentage}%`}</div>
         </div>
 
-        <div style={{ background: 'var(--card)', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', overflow: 'hidden', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+        <div className="card-accent-hover" style={{ background: 'var(--card)', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border)' }}>
           <div className="no-print" style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
             <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-secondary)', marginRight: '0.5rem' }}>Filter:</span>
             {['All', 'Present', 'Absent'].map(status => (

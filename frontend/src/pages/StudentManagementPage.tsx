@@ -369,7 +369,7 @@ const StudentManagementPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="card table-card hover-lift animate-fade-in-up delay-2">
+        <div className="card table-card animate-fade-in-up delay-2">
           <h3 style={{ marginTop: 0, color: 'var(--accent)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
             {editingIndex ? `Editing Student: ${editingIndex}` : 'Add New Student'}
           </h3>
@@ -407,7 +407,7 @@ const StudentManagementPage: React.FC = () => {
           {notice && <div style={{ color: '#5EEAD4', marginTop: '1rem', background: '#134E4A', padding: '0.75rem', borderRadius: '12px' }}>{notice}</div>}
         </div>
 
-        <div className="card table-card hover-lift animate-fade-in-up delay-3">
+        <div className="card table-card animate-fade-in-up delay-3" style={{ marginTop: '2rem' }}>
           <h3 style={{ marginTop: 0, color: 'var(--accent)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>Registered Students</h3>
           
           <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -532,9 +532,9 @@ const StudentManagementPage: React.FC = () => {
             position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
             backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
           }} onClick={() => setViewStudent(null)}>
-            <div className="modal-content" style={{
+            <div className="modal-content card-accent-hover" style={{
               backgroundColor: 'var(--card)', padding: '2rem', borderRadius: '16px', maxWidth: '500px', width: '90%',
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.4)', border: '1px solid var(--border)',
+              border: '1px solid var(--border)',
               position: 'relative'
             }} onClick={e => e.stopPropagation()}>
               <button onClick={() => setViewStudent(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--muted)' }}>&times;</button>

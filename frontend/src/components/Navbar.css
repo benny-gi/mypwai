@@ -7,6 +7,13 @@
   box-shadow:var(--shadow-sm);
   border:1px solid rgba(255,255,255,0.06);
   position:sticky;top:0.5rem;z-index:100;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 
 .navbar-brand{
