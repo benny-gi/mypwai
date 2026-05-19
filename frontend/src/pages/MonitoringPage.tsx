@@ -1249,17 +1249,17 @@ const MonitoringPage: React.FC = () => {
         <h2 className="animate-fade-in-up" style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>Live Exam Monitoring</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)' }}>
             <h3 style={{ margin: 0, color: 'var(--muted)' }}>Active Sessions</h3>
             <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#5EEAD4', margin: '0.5rem 0' }}>{data.activeSessions}</p>
           </div>
-          <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+          <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)' }}>
             <h3 style={{ margin: 0, color: 'var(--muted)' }}>Devices Online</h3>
             <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#93C5FD', margin: '0.5rem 0' }}>{data.devicesOnline}</p>
           </div>
         </div>
 
-        <div style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+        <div className="card-accent-hover" style={{ background: 'var(--card)', padding: '1.5rem', borderRadius: '16px', border: '1px solid var(--border)' }}>
           <h3 style={{ marginTop: 0, marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem', color: 'var(--accent)' }}>Recent Activity Logs</h3>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {data.recentLogs.map((log: any, index: number) => (
@@ -1398,22 +1398,22 @@ const MonitoringPage: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ marginTop: '1rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem' }}>
-            <h4 style={{ marginTop: 0, marginBottom: '0.8rem' }}>Malpractice Event Log</h4>
-            {alerts.length === 0 && <div style={{ color: 'var(--text-secondary)' }}>No malpractice alerts yet. Start camera to begin monitoring.</div>}
+          <div style={{ marginTop: '1rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem', color: '#E2E8F0' }}>
+            <h4 style={{ marginTop: 0, marginBottom: '0.8rem', color: 'var(--accent)' }}>Malpractice Event Log</h4>
+            {alerts.length === 0 && <div style={{ color: '#94A3B8' }}>No malpractice alerts yet. Start camera to begin monitoring.</div>}
             {alerts.slice(0, 6).map((alert) => (
               <div key={alert.id} style={{ padding: '0.55rem 0', borderBottom: '1px solid rgba(148,163,184,0.18)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-                  <div style={{ fontWeight: 700 }}>{alert.eventType.replace(/_/g, ' ')}</div>
-                  <div style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>{new Date(alert.timestamp).toLocaleString()}</div>
+                  <div style={{ fontWeight: 700, color: '#E2E8F0' }}>{alert.eventType.replace(/_/g, ' ')}</div>
+                  <div style={{ color: '#94A3B8', fontSize: '0.85rem' }}>{new Date(alert.timestamp).toLocaleString()}</div>
                 </div>
-                <div style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>{alert.detail}</div>
+                <div style={{ color: '#94A3B8', fontSize: '0.9rem' }}>{alert.detail}</div>
                 {(alert.eventType === 'excessive_movement' || alert.eventType === 'candidate_interaction' || alert.eventType === 'proxy_face_mismatch') && (
                   <div style={{ color: '#FCA5A5', fontSize: '0.9rem', fontWeight: 700, marginTop: '0.2rem' }}>
                     Flagged Student: {alert.studentId || 'unknown'}
                   </div>
                 )}
-                <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem' }}>
+                <div style={{ color: '#94A3B8', fontSize: '0.78rem' }}>
                   student={alert.studentId || 'unknown'} faceId={alert.faceId || 'unknown'} severity={alert.severity} score={alert.suspicionScore} threshold={alert.threshold} camera={alert.cameraId}
                 </div>
               </div>
@@ -1423,25 +1423,25 @@ const MonitoringPage: React.FC = () => {
           {snapshotDataUrl && (
             <div style={{ marginTop: '1rem' }}>
               <div style={{ marginBottom: '0.4rem', color: 'var(--muted)', fontSize: '0.88rem' }}>Latest evidence snapshot</div>
-              <img src={snapshotDataUrl} alt="Latest malpractice evidence" style={{ width: '240px', borderRadius: '10px', border: '1px solid rgba(148,163,184,0.35)' }} />
+              <img src={snapshotDataUrl} alt="Latest malpractice evidence" style={{ width: '240px', borderRadius: '10px', border: '1px solid var(--border)' }} />
             </div>
           )}
 
-          <div style={{ marginTop: '1.2rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem' }}>
+          <div style={{ marginTop: '1.2rem', background: 'rgba(2, 6, 23, 0.65)', border: '1px solid rgba(148,163,184,0.25)', borderRadius: '10px', padding: '0.9rem', color: '#E2E8F0' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-              <h4 style={{ margin: 0 }}>Enrolled Faces</h4>
-              <button onClick={refreshEnrolledFaces} style={{ background: 'rgba(148,163,184,0.18)', border: '1px solid rgba(148,163,184,0.3)', color: 'var(--text)', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+              <h4 style={{ margin: 0, color: 'var(--accent)' }}>Enrolled Faces</h4>
+              <button onClick={refreshEnrolledFaces} className="btn-lift" style={{ background: 'rgba(148,163,184,0.18)', border: '1px solid rgba(148,163,184,0.3)', color: '#E2E8F0', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
                 Refresh
               </button>
             </div>
 
             {loadingFaces ? (
-              <div style={{ color: 'var(--text-secondary)', marginTop: '0.8rem' }}>Loading enrolled faces...</div>
+              <div style={{ color: '#94A3B8', marginTop: '0.8rem' }}>Loading enrolled faces...</div>
             ) : enrolledFaces.length === 0 ? (
-              <div style={{ color: 'var(--text-secondary)', marginTop: '0.8rem' }}>No faces are enrolled yet.</div>
+              <div style={{ color: '#94A3B8', marginTop: '0.8rem' }}>No faces are enrolled yet.</div>
             ) : (
               <div style={{ overflowX: 'auto', marginTop: '0.8rem' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text)' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', color: '#E2E8F0' }}>
                   <thead>
                     <tr style={{ textAlign: 'left', borderBottom: '1px solid rgba(148,163,184,0.25)' }}>
                       <th style={{ padding: '0.65rem 0.5rem' }}>Student ID</th>
@@ -1474,12 +1474,13 @@ const MonitoringPage: React.FC = () => {
                           {face.faceId.startsWith('local-') ? (
                             <button
                               onClick={() => navigate('/students')}
+                              className="btn-lift"
                               style={{ background: '#0EA5E9', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}
                             >
                               Manage
                             </button>
                           ) : (
-                            <button onClick={() => handleDeleteFace(face.faceId)} style={{ background: '#EF4444', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
+                            <button onClick={() => handleDeleteFace(face.faceId)} className="btn-lift" style={{ background: '#EF4444', border: 'none', color: '#fff', borderRadius: '12px', padding: '0.45rem 0.8rem', fontWeight: 700, cursor: 'pointer' }}>
                               Delete
                             </button>
                           )}

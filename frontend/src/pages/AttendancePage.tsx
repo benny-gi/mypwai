@@ -11,9 +11,8 @@ const progressSteps = ['Sensor armed', 'Fingerprint captured', 'Template matched
 const glassCard: React.CSSProperties = {
   background: 'var(--card)',
   borderRadius: '16px',
-  boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
   border: '1px solid var(--border)',
-  borderTop: '3px solid var(--upsa-navy)',
+  transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s ease',
 };
 
 const AttendancePage: React.FC = () => {
@@ -96,17 +95,21 @@ const AttendancePage: React.FC = () => {
       setDeviceConnected(true);
       setDeviceInfo(await ScannerService.getDeviceInfo());
       setMessage('Fingerprint scanner is ready. Click Verify and place the finger on the scanner.');
+      return true;
     } catch (error) {
       setDeviceConnected(false);
       setDeviceInfo(null);
       setMessage(error instanceof Error ? error.message : 'Fingerprint support check failed');
+      return false;
     }
   };
 
   const handleVerify = async () => {
     if (!deviceConnected) {
-      setMessage('Connect a fingerprint scanner before starting verification.');
-      return;
+      const connected = await connectScanner();
+      if (!connected) {
+        return;
+      }
     }
 
     setLoading(true);
@@ -175,7 +178,7 @@ const AttendancePage: React.FC = () => {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '1.5rem' }}>
-          <div className="animate-scale-in delay-2" style={{ ...glassCard, padding: '1.5rem' }}>
+          <div className="animate-scale-in delay-2 card-accent-hover" style={{ ...glassCard, padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', gap: '1rem', flexWrap: 'wrap' }}>
               <div>
                 <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -269,7 +272,7 @@ const AttendancePage: React.FC = () => {
           </div>
 
           <div className="animate-scale-in delay-3" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <div style={{ ...glassCard, padding: '1.35rem' }}>
+            <div className="card-accent-hover" style={{ ...glassCard, padding: '1.35rem' }}>
               <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 Operator Console
               </div>
@@ -285,12 +288,11 @@ const AttendancePage: React.FC = () => {
                   />
                   <button
                     onClick={handleVerify}
-                    disabled={loading || !deviceConnected}
-                    className={`btn ${loading || !deviceConnected ? '' : 'btn-primary'}`}
+                    disabled={loading}
+                    className={`btn btn-lift ${loading ? 'btn-disabled' : 'btn-primary'}`}
                     style={{
                       width: '100%',
                       marginTop: '0.75rem',
-                      background: loading || !deviceConnected ? '#334155' : undefined,
                       justifyContent: 'center',
                       fontWeight: 800,
                       borderRadius: '16px',
@@ -328,7 +330,7 @@ const AttendancePage: React.FC = () => {
               <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <button
                   onClick={connectScanner}
-                  disabled={loading || !deviceConnected}
+                  disabled={loading || deviceConnected}
                   className="btn-outline-action"
                 >
                   Check fingerprint support
@@ -343,7 +345,7 @@ const AttendancePage: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ ...glassCard, padding: '1.35rem', marginTop: '1.25rem' }}>
+            <div className="card-accent-hover" style={{ ...glassCard, padding: '1.35rem', marginTop: '1.25rem' }}>
               <div style={{ color: 'var(--muted)', lineHeight: 1.45, fontSize: '0.9rem' }}>
                 Enter the student ID, then click scan. The connected fingerprint scanner will capture the finger and the student will be marked present.
               </div>
@@ -352,7 +354,7 @@ const AttendancePage: React.FC = () => {
         </div>
 
         {message && (
-          <div style={{
+          <div className="card-accent-hover" style={{
             marginTop: '1.5rem',
             ...glassCard,
             padding: '1rem 1.25rem',

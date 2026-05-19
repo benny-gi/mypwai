@@ -302,7 +302,7 @@ const AdminInvigilatorsPage: React.FC = () => {
       </p>
 
       {/* Single Create Form */}
-      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+      <div className="card-accent-hover" style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid var(--border)' }}>
         <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Add Single Invigilator</h3>
         <form onSubmit={handleCreate} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <div style={{ flex: '1 1 220px' }}>
@@ -345,7 +345,7 @@ const AdminInvigilatorsPage: React.FC = () => {
       </div>
 
       {/* Bulk Upload Section */}
-      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+      <div className="card-accent-hover" style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid var(--border)' }}>
         <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Bulk Import Invigilators</h3>
         <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '1rem' }}>
           Upload multiple invigilator emails at once. Passwords will be auto-generated for each.
@@ -430,7 +430,7 @@ const AdminInvigilatorsPage: React.FC = () => {
                       <td style={{ padding: '0.5rem' }}>{r.fullName}</td>
                       <td style={{ padding: '0.5rem' }}>
                         {r.generatedPassword ? (
-                          <code style={{ background: '#FFFBEB', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{r.generatedPassword}</code>
+                          <code style={{ background: 'rgba(255,182,6,0.15)', color: 'var(--upsa-gold)', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{r.generatedPassword}</code>
                         ) : '—'}
                       </td>
                       <td style={{ padding: '0.5rem' }}>
@@ -450,7 +450,7 @@ const AdminInvigilatorsPage: React.FC = () => {
       </div>
 
       {/* Invigilator List */}
-      <div style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 4px 20px rgba(0,0,0,0.3)', border: '1px solid var(--border)', borderTop: '3px solid var(--upsa-navy)' }}>
+      <div className="card-accent-hover" style={{ background: 'var(--card)', borderRadius: 16, padding: '1.5rem', border: '1px solid var(--border)' }}>
         <h3 style={{ marginTop: 0, marginBottom: '1rem', color: 'var(--accent)' }}>Current Invigilators ({invigilators.length})</h3>
         
         {/* Bulk Reset Section */}
@@ -506,7 +506,7 @@ const AdminInvigilatorsPage: React.FC = () => {
                       <td style={{ padding: '0.5rem' }}>{r.fullName}</td>
                       <td style={{ padding: '0.5rem' }}>
                         {r.generatedPassword ? (
-                          <code style={{ background: '#FFFBEB', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{r.generatedPassword}</code>
+                          <code style={{ background: 'rgba(255,182,6,0.15)', color: 'var(--upsa-gold)', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{r.generatedPassword}</code>
                         ) : '—'}
                       </td>
                       <td style={{ padding: '0.5rem' }}>
@@ -567,7 +567,7 @@ const AdminInvigilatorsPage: React.FC = () => {
                     <td style={{ padding: '0.6rem 0.5rem', fontFamily: 'monospace' }}>
                       {inv.temp_password ? (
                         <div>
-                          <code style={{ background: '#FFFBEB', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{inv.temp_password}</code>
+                          <code style={{ background: 'rgba(255,182,6,0.15)', color: 'var(--upsa-gold)', padding: '0.15rem 0.4rem', borderRadius: 3, fontWeight: 700 }}>{inv.temp_password}</code>
                         </div>
                       ) : (
                         '—'

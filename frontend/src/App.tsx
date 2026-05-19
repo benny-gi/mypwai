@@ -61,13 +61,22 @@ function AppContent() {
           setSessionState('authenticated');
         }
       })
-      .catch(() => {
+      .catch((err: any) => {
         if (!cancelled) {
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('userRole');
-          localStorage.removeItem('username');
-          localStorage.removeItem('email');
-          setSessionState('unauthenticated');
+          const message = err?.message || '';
+          // Only clear auth on explicit token-invalid errors (401, 403, expired, etc.)
+          // Network/server errors (backend down) — keep the token and let the user in
+          const isExplicitAuthError = /invalid token|token expired|authentication failed|unauthorized|no token provided/i.test(message);
+          if (isExplicitAuthError) {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            setSessionState('unauthenticated');
+          } else {
+            // Backend unreachable or server error — trust the existing session
+            setSessionState('authenticated');
+          }
         }
       });
 
