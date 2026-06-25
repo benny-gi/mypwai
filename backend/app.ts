@@ -1,3 +1,4 @@
+// Index: routes: /api/health:26,30 | /api/attendance:37 | /api/ai:38 | /api/auth:39 | /api/fingerprint:40 | /api/admin:41
 import express from 'express';
 import attendanceRouter from './modules/attendance.js';
 import aiRouter from './modules/ai.js';

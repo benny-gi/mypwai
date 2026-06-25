@@ -1,4 +1,6 @@
-// Native bridge to ZKFinger SDK (libzkfp.dll) via koffi
+// Index: zkInit():70 | zkTerminate():78 | zkGetDeviceCount():87 | zkOpenDevice():91 | zkCloseDevice():107
+//        zkInitDB():111 | zkCapture():122 | zkAddTemplate():148 | zkIdentify():156 | zkLoadTemplates():168
+//        zkClearDB():177 | zkGetCount():181 | zkRemoveTemplate():189 | isDeviceOpen():194 | isDBReady():195
 // ponytail: HANDLE = void* on x64; capture = polling loop (non-blocking SDK)
 import koffi from 'koffi';
 

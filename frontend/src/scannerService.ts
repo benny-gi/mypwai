@@ -1,3 +1,5 @@
+// Index: ScannerService.init():47 | shutdown():54 | probeConnection():60 | connect():69 | getDeviceInfo():74
+//        capture():87 | verify():98 | enroll():106 | getEnrolledStudents():111 | deleteTemplate():116 | reloadTemplates():122
 export type ScannerDeviceInfo = {
   deviceId: string;
   model: string;

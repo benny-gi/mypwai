@@ -1,3 +1,6 @@
+// Index: ensureReady():15 | ensureTable():49 | loadTemplatesFromDB():62 | GET /status:80 | POST /init:92
+//        POST /shutdown:101 | POST /capture:112 | POST /enroll:127 | POST /verify:168 | POST /reload:210
+//        DELETE /template/:studentId:221 | GET /enrolled:240
 import express from 'express';
 import { query } from '../db.js';
 import {
