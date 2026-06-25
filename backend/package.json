@@ -8,6 +8,8 @@
     "start": "node dist/server.js",
     "dev": "tsx server.ts",
     "migrate": "tsx scripts/migrate.ts",
+    "setup-db": "tsx scripts/run-migrations.ts",
+    "seed-admin": "tsx scripts/seed-admin.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

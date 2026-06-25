@@ -360,176 +360,113 @@ const StudentManagementPage: React.FC = () => {
   };
 
   return (
-    <div style={{
-      minHeight: 'calc(100vh - 68px)',
-      width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      padding: '2rem'
-    }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+    <div className="page-enter" style={{ minHeight: 'calc(100vh - 68px)', width: '100%' }}>
+      <div className="page-container">
+        <div className="page-header">
           <div>
-            <h1 style={{ margin: 0, color: '#fff', fontSize: '2.25rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Student Management</h1>
-            <p style={{ margin: '0.5rem 0 0', color: '#eee', textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>Add, edit, and view student information. Face sync now uses each student profile photo automatically.</p>
+            <h1 className="page-title animate-fade-in-up">Student Management</h1>
+            <p className="page-sub animate-fade-in-up delay-1">Add, edit, and view student information. Face sync now uses each student profile photo automatically.</p>
           </div>
         </div>
 
-        <div style={{ 
-          backgroundColor: 'rgba(255, 255, 255, 0.9)', 
-          borderRadius: '12px', 
-          padding: '2rem', 
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          marginBottom: '2rem',
-          backdropFilter: 'blur(5px)',
-          borderTop: '4px solid #C9A84C'
-        }}>
-          <h3 style={{ marginTop: 0, color: '#1F2937', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
+        <div className="card table-card animate-fade-in-up delay-2">
+          <h3 style={{ marginTop: 0, color: 'var(--accent)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
             {editingIndex ? `Editing Student: ${editingIndex}` : 'Add New Student'}
           </h3>
           <form style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', alignItems: 'flex-end' }} onSubmit={handleSubmit}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label htmlFor="index" style={{ marginBottom: '0.5rem', color: '#374151' }}>Index Number</label>
-              <input id="index" name="index" type="text" placeholder="e.g., 1089..." value={form.index} onChange={handleChange} style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #D1D5DB' }} />
+              <label htmlFor="index" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Index Number</label>
+              <input id="index" name="index" type="text" placeholder="e.g., 1089..." value={form.index} onChange={handleChange} className="input" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label htmlFor="photo" style={{ marginBottom: '0.5rem', color: '#374151' }}>Profile Photo</label>
-              <input id="photo" name="photo" type="file" accept="image/*" onChange={handleImageChange} style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #D1D5DB', background: 'white' }} />
+              <label htmlFor="photo" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Profile Photo</label>
+              <input id="photo" name="photo" type="file" accept="image/*" onChange={handleImageChange} style={{ padding: '0.5rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.10)', background: 'transparent', color: 'var(--text)' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label htmlFor="name" style={{ marginBottom: '0.5rem', color: '#374151' }}>Full Name</label>
-              <input id="name" name="name" type="text" placeholder="e.g., John Doe" value={form.name} onChange={handleChange} style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #D1D5DB' }} />
+              <label htmlFor="name" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Full Name</label>
+              <input id="name" name="name" type="text" placeholder="e.g., John Doe" value={form.name} onChange={handleChange} className="input" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label htmlFor="programme" style={{ marginBottom: '0.5rem', color: '#374151' }}>Programme</label>
-              <input id="programme" name="programme" type="text" placeholder="e.g., B.Sc. Computer Science" value={form.programme} onChange={handleChange} style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #D1D5DB' }} />
+              <label htmlFor="programme" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Programme</label>
+              <input id="programme" name="programme" type="text" placeholder="e.g., B.Sc. Computer Science" value={form.programme} onChange={handleChange} className="input" />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label htmlFor="level" style={{ marginBottom: '0.5rem', color: '#374151' }}>Level</label>
-              <input id="level" name="level" type="text" placeholder="e.g., 400" value={form.level} onChange={handleChange} style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #D1D5DB' }} />
+              <label htmlFor="level" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Level</label>
+              <input id="level" name="level" type="text" placeholder="e.g., 400" value={form.level} onChange={handleChange} className="input" />
             </div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button type="submit" disabled={loading} style={{
-                background: '#C9A84C',
-                color: '#1a1a1a',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '0.85rem 1.5rem',
-                fontWeight: 600,
-                fontSize: '1rem',
-                cursor: 'pointer',
-                height: 'fit-content',
-                flex: 1
-              }}>
+              <button type="submit" disabled={loading} className="btn btn-primary" style={{ flex: 1 }}>
                 {loading ? (editingIndex ? 'Updating...' : 'Adding...') : (editingIndex ? 'Update Student' : '+ Add Student')}
               </button>
               {editingIndex && (
-                <button type="button" onClick={handleCancelEdit} style={{
-                  background: '#6B7280',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '0.85rem 1rem',
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  cursor: 'pointer',
-                  height: 'fit-content'
-                }}>
-                  Cancel
-                </button>
+                <button type="button" onClick={handleCancelEdit} className="btn btn-ghost">Cancel</button>
               )}
             </div>
           </form>
-          {error && <div style={{ color: '#EF4444', marginTop: '1rem', background: '#FEF2F2', padding: '0.75rem', borderRadius: '8px' }}>{error}</div>}
-          {notice && <div style={{ color: '#065F46', marginTop: '1rem', background: '#ECFDF5', padding: '0.75rem', borderRadius: '8px' }}>{notice}</div>}
+          {error && <div style={{ color: '#FCA5A5', marginTop: '1rem', background: '#7F1D1D', padding: '0.75rem', borderRadius: '12px' }}>{error}</div>}
+          {notice && <div style={{ color: '#5EEAD4', marginTop: '1rem', background: '#134E4A', padding: '0.75rem', borderRadius: '12px' }}>{notice}</div>}
         </div>
 
-        <div style={{ 
-          backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-          borderRadius: '12px', 
-          padding: '2rem', 
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-          overflowX: 'auto',
-          backdropFilter: 'blur(5px)',
-          borderTop: '4px solid #C9A84C'
-        }}>
-          <h3 style={{ marginTop: 0, color: '#1F2937', fontSize: '1.5rem', marginBottom: '1.5rem' }}>Registered Students</h3>
+        <div className="card table-card animate-fade-in-up delay-3" style={{ marginTop: '2rem' }}>
+          <h3 style={{ marginTop: 0, color: 'var(--accent)', fontSize: '1.5rem', marginBottom: '1.5rem' }}>Registered Students</h3>
           
-          <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem' }}>
+          <div style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
             <input 
               type="text" 
               placeholder="Search by name or index number..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #D1D5DB' }}
+              className="input"
+              style={{ flex: 1 }}
             />
-            <button
-              onClick={handleSyncAllFaces}
-              disabled={syncingAllFaces}
-              style={{
-                padding: '0.75rem 1.5rem',
-                background: '#C9A84C',
-                color: '#1a1a1a',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: syncingAllFaces ? 'not-allowed' : 'pointer',
-                fontWeight: 600,
-                whiteSpace: 'nowrap',
-                opacity: syncingAllFaces ? 0.75 : 1
-              }}
-            >
-              {syncingAllFaces ? 'Syncing Faces...' : 'Sync All Face Photos'}
-            </button>
+            <button className="btn btn-primary" onClick={handleSyncAllFaces} disabled={syncingAllFaces}>{syncingAllFaces ? 'Syncing Faces...' : 'Sync All Face Photos'}</button>
             {selectedIndices.size > 0 && (
-              <button onClick={handleBulkDelete} style={{ padding: '0.75rem 1.5rem', background: '#EF4444', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, whiteSpace: 'nowrap' }}>
-                Delete Selected ({selectedIndices.size})
-              </button>
+              <button className="btn btn-ghost" onClick={handleBulkDelete}>Delete Selected ({selectedIndices.size})</button>
             )}
-            <button onClick={handleExport} style={{ padding: '0.75rem 1.5rem', background: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, whiteSpace: 'nowrap' }}>Export Excel</button>
+            <button className="btn btn-ghost" onClick={handleExport}>Export Excel</button>
           </div>
 
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #E5E7EB' }}>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
                 <th style={{ padding: '0.75rem 1rem', width: '40px' }}>
                   <input type="checkbox" onChange={handleSelectAll} checked={filteredStudents.length > 0 && selectedIndices.size === filteredStudents.length} />
                 </th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left', width: '60px' }}>Photo</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Index</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Name</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Programme</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Level</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Fingerprint</th>
-                <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Face Recognition</th>
-              <th style={{ padding: '0.75rem 1rem', color: '#6B7280', fontWeight: 600, textAlign: 'left' }}>Actions</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left', width: '60px' }}>Photo</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Index</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Name</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Programme</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Level</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Fingerprint</th>
+                <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Face Recognition</th>
+              <th style={{ padding: '0.75rem 1rem', color: 'var(--muted)', fontWeight: 600, textAlign: 'left' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {currentStudents.map((s, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid #F3F4F6' }}>
+                <tr key={i} style={{ borderBottom: '1px solid var(--border)' }}>
                   <td style={{ padding: '0.75rem 1rem' }}>
                     <input type="checkbox" checked={selectedIndices.has(s.index)} onChange={() => handleSelect(s.index)} />
                   </td>
                   <td style={{ padding: '0.75rem 1rem' }}>
                     {s.photo ? (
-                      <img src={s.photo} alt="Profile" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #fff', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }} />
+                      <img src={s.photo} alt="Profile" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #FFB606', boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }} />
                     ) : (
-                      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9CA3AF', fontSize: '0.75rem' }}>N/A</div>
+                      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: '0.75rem' }}>N/A</div>
                     )}
                   </td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#374151' }}>{s.index}</td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#374151' }}>{s.name}</td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#374151' }}>{s.programme}</td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#374151' }}>{s.level}</td>
+                  <td style={{ padding: '0.75rem 1rem', color: 'var(--text-secondary)' }}>{s.index}</td>
+                  <td style={{ padding: '0.75rem 1rem', color: 'var(--text-secondary)' }}>{s.name}</td>
+                  <td style={{ padding: '0.75rem 1rem', color: 'var(--text-secondary)' }}>{s.programme}</td>
+                  <td style={{ padding: '0.75rem 1rem', color: 'var(--text-secondary)' }}>{s.level}</td>
                   <td style={{ padding: '0.75rem 1rem' }}>
                     <span style={{
                       padding: '0.25rem 0.75rem',
                       borderRadius: '9999px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      backgroundColor: s.fingerprintEnrolled ? '#D1FAE5' : '#F3F4F6',
-                      color: s.fingerprintEnrolled ? '#065F46' : '#6B7280'
+                      backgroundColor: s.fingerprintEnrolled ? '#134E4A' : 'rgba(255,255,255,0.05)',
+                      color: s.fingerprintEnrolled ? '#5EEAD4' : 'var(--muted)'
                     }}>
                       {s.fingerprintEnrolled ? 'Yes' : 'Pending'}
                     </span>
@@ -540,8 +477,8 @@ const StudentManagementPage: React.FC = () => {
                       borderRadius: '9999px',
                       fontSize: '0.85rem',
                       fontWeight: 500,
-                      backgroundColor: s.faceEnrolled ? '#D1FAE5' : '#FEF3C7',
-                      color: s.faceEnrolled ? '#065F46' : '#92400E'
+                      backgroundColor: s.faceEnrolled ? '#134E4A' : '#78350F',
+                      color: s.faceEnrolled ? '#5EEAD4' : '#FCD34D'
                     }}>
                       {s.faceEnrolled ? 'Enrolled' : 'Pending'}
                     </span>
@@ -549,43 +486,19 @@ const StudentManagementPage: React.FC = () => {
                   <td style={{ padding: '0.75rem 1rem', display: 'flex', gap: '0.5rem' }}>
                     <button 
                       onClick={() => setViewStudent(s)}
-                      style={{
-                        background: '#FFF9EB',
-                        color: '#A68A2E',
-                        border: '1px solid #C9A84C',
-                        borderRadius: '6px',
-                        padding: '0.25rem 0.75rem',
-                        cursor: 'pointer',
-                        fontWeight: 500
-                      }}
+                      className="btn-outline-action btn-outline-action--info"
                     >
                       View
                     </button>
                     <button 
                       onClick={() => handleEdit(s)}
-                      style={{
-                        background: '#FFF9EB',
-                        color: '#A68A2E',
-                        border: '1px solid #C9A84C',
-                        borderRadius: '6px',
-                        padding: '0.25rem 0.75rem',
-                        cursor: 'pointer',
-                        fontWeight: 500
-                      }}
+                      className="btn-outline-action btn-outline-action--info"
                     >
                       Edit
                     </button>
                     <button 
                       onClick={() => handleDelete(s.index)}
-                      style={{
-                        background: '#FEF2F2',
-                        color: '#DC2626',
-                        border: '1px solid #FCA5A5',
-                        borderRadius: '6px',
-                        padding: '0.25rem 0.75rem',
-                        cursor: 'pointer',
-                        fontWeight: 500
-                      }}
+                      className="btn-outline-action btn-outline-action--danger"
                     >
                       Delete
                     </button>
@@ -601,13 +514,13 @@ const StudentManagementPage: React.FC = () => {
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                style={{ padding: '0.5rem 1rem', border: '1px solid #D1D5DB', borderRadius: '6px', background: currentPage === 1 ? '#F3F4F6' : 'white', cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
+                style={{ padding: '0.5rem 1rem', border: '1px solid var(--border)', borderRadius: '6px', background: currentPage === 1 ? 'rgba(255,255,255,0.03)' : 'transparent', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', color: 'var(--muted)' }}
               >Previous</button>
-              <span style={{ padding: '0.5rem 1rem', fontWeight: 600 }}>Page {currentPage}</span>
+              <span style={{ padding: '0.5rem 1rem', fontWeight: 600, color: 'var(--accent)' }}>Page {currentPage}</span>
               <button 
                 onClick={() => setCurrentPage(prev => (indexOfLastItem < filteredStudents.length ? prev + 1 : prev))}
                 disabled={indexOfLastItem >= filteredStudents.length}
-                style={{ padding: '0.5rem 1rem', border: '1px solid #D1D5DB', borderRadius: '6px', background: indexOfLastItem >= filteredStudents.length ? '#F3F4F6' : 'white', cursor: indexOfLastItem >= filteredStudents.length ? 'not-allowed' : 'pointer' }}
+                style={{ padding: '0.5rem 1rem', border: '1px solid var(--border)', borderRadius: '6px', background: indexOfLastItem >= filteredStudents.length ? 'rgba(255,255,255,0.03)' : 'transparent', cursor: indexOfLastItem >= filteredStudents.length ? 'not-allowed' : 'pointer', color: 'var(--muted)' }}
               >Next</button>
             </div>
           )}
@@ -615,45 +528,45 @@ const StudentManagementPage: React.FC = () => {
 
         {/* View Details Modal */}
         {viewStudent && (
-          <div style={{
+          <div className="modal-overlay" style={{
             position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+            backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
           }} onClick={() => setViewStudent(null)}>
-            <div style={{
-              backgroundColor: 'white', padding: '2rem', borderRadius: '12px', maxWidth: '500px', width: '90%',
-              boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            <div className="modal-content card-accent-hover" style={{
+              backgroundColor: 'var(--card)', padding: '2rem', borderRadius: '16px', maxWidth: '500px', width: '90%',
+              border: '1px solid var(--border)',
               position: 'relative'
             }} onClick={e => e.stopPropagation()}>
-              <button onClick={() => setViewStudent(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: '#6B7280' }}>&times;</button>
+              <button onClick={() => setViewStudent(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'none', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--muted)' }}>&times;</button>
               
               <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
                 {viewStudent.photo ? (
-                  <img src={viewStudent.photo} alt={viewStudent.name} style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', border: '4px solid #E5E7EB' }} />
+                  <img src={viewStudent.photo} alt={viewStudent.name} style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', border: '4px solid #FFB606' }} />
                 ) : (
-                  <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: '#E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', fontSize: '3rem', color: '#9CA3AF' }}>?</div>
+                  <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', fontSize: '3rem', color: 'var(--muted)' }}>?</div>
                 )}
-                <h2 style={{ margin: '1rem 0 0.5rem', color: '#111827' }}>{viewStudent.name}</h2>
-                <p style={{ margin: 0, color: '#6B7280', fontWeight: 500 }}>{viewStudent.index}</p>
+                <h2 style={{ margin: '1rem 0 0.5rem', color: 'var(--accent)' }}>{viewStudent.name}</h2>
+                <p style={{ margin: 0, color: 'var(--muted)', fontWeight: 500 }}>{viewStudent.index}</p>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', background: '#F9FAFB', padding: '1.5rem', borderRadius: '8px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', background: 'rgba(255,255,255,0.04)', padding: '1.5rem', borderRadius: '12px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#6B7280', marginBottom: '0.25rem' }}>Programme</label>
-                  <div style={{ fontWeight: 600, color: '#374151' }}>{viewStudent.programme}</div>
+                  <label style={{ display: 'block', fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '0.25rem' }}>Programme</label>
+                  <div style={{ fontWeight: 600, color: 'var(--text)' }}>{viewStudent.programme}</div>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#6B7280', marginBottom: '0.25rem' }}>Level</label>
-                  <div style={{ fontWeight: 600, color: '#374151' }}>{viewStudent.level}</div>
+                  <label style={{ display: 'block', fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '0.25rem' }}>Level</label>
+                  <div style={{ fontWeight: 600, color: 'var(--text)' }}>{viewStudent.level}</div>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#6B7280', marginBottom: '0.25rem' }}>Fingerprint</label>
-                  <div style={{ fontWeight: 600, color: viewStudent.fingerprintEnrolled ? '#059669' : '#D97706' }}>
+                  <label style={{ display: 'block', fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '0.25rem' }}>Fingerprint</label>
+                  <div style={{ fontWeight: 600, color: viewStudent.fingerprintEnrolled ? '#5EEAD4' : '#FCD34D' }}>
                     {viewStudent.fingerprintEnrolled ? 'Yes' : 'Pending'}
                   </div>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.875rem', color: '#6B7280', marginBottom: '0.25rem' }}>Face Recognition</label>
-                  <div style={{ fontWeight: 600, color: viewStudent.faceEnrolled ? '#059669' : '#D97706' }}>
+                  <label style={{ display: 'block', fontSize: '0.875rem', color: 'var(--muted)', marginBottom: '0.25rem' }}>Face Recognition</label>
+                  <div style={{ fontWeight: 600, color: viewStudent.faceEnrolled ? '#5EEAD4' : '#FCD34D' }}>
                     {viewStudent.faceEnrolled ? 'Enrolled' : 'Not Enrolled'}
                   </div>
                 </div>

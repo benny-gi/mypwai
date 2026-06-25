@@ -5,15 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 const cardStyle: React.CSSProperties = {
   padding: '2rem',
-  borderRadius: '12px',
-  backgroundColor: '#FFFFFF',
-  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  borderRadius: '16px',
+  backgroundColor: 'var(--card)',
+  border: '1px solid var(--border)',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
   cursor: 'pointer',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  borderTop: '4px solid #C9A84C'
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
 };
 
 const DashboardPage: React.FC = () => {
@@ -591,14 +590,14 @@ const DashboardPage: React.FC = () => {
       justifyContent: 'center',
       alignItems: 'center',
       height: 'calc(100vh - 68px)', // Adjust based on Navbar height
-      color: '#6B7280',
+      color: 'var(--muted)',
       flexDirection: 'column'
     }}>
       <div style={{
         width: '40px',
         height: '40px',
-        border: '4px solid #E5E7EB',
-        borderTop: '4px solid #C9A84C',
+        border: '4px solid rgba(255,255,255,0.06)',
+        borderTop: '4px solid #FFB606',
         borderRadius: '50%',
         animation: 'spin 1s linear infinite',
         marginBottom: '1rem'
@@ -609,21 +608,14 @@ const DashboardPage: React.FC = () => {
   );
 
   return (
-    <div style={{
-      minHeight: 'calc(100vh - 68px)',
-      width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      padding: '2rem'
-    }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+    <div className="page-enter" style={{ minHeight: 'calc(100vh - 68px)', width: '100%' }}>
+      <div className="page-container">
+      <div className="page-header">
         <div>
-          <h1 style={{ margin: 0, color: '#fff', fontSize: '2.25rem', textShadow: '1px 1px 3px rgba(0,0,0,0.7)' }}>Dashboard</h1>
-          <p style={{ margin: '0.5rem 0 0', color: '#eee', textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>Welcome back, {username}</p>
+          <h1 className="page-title animate-fade-in-up">Dashboard</h1>
+          <p className="page-sub animate-fade-in-up delay-1">Welcome back, {username}</p>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div className="page-actions animate-fade-in-up delay-2">
           <input
             type="file"
             id="db-import-input"
@@ -631,111 +623,66 @@ const DashboardPage: React.FC = () => {
             style={{ display: 'none' }}
             onChange={handleImportDB}
           />
-          <button
-            onClick={() => document.getElementById('db-import-input')?.click()}
-            style={{
-              padding: '0.75rem 1.5rem', backgroundColor: '#FFF9EB', color: '#A68A2E',
-              border: '1px solid #C9A84C', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
-            }}
-          >
-            Import DB
-          </button>
-          <button
-            onClick={handleExportDB}
-            style={{
-              padding: '0.75rem 1.5rem', backgroundColor: '#FFF9EB', color: '#A68A2E',
-              border: '1px solid #C9A84C', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
-            }}
-          >
-            Export DB
-          </button>
-          <button
-            onClick={handleClearDB}
-            style={{
-              padding: '0.75rem 1.5rem', backgroundColor: '#FFFBEB', color: '#D97706',
-              border: '1px solid #FDE68A', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
-            }}
-          >
-            Clear Database
-          </button>
-          <button
-            onClick={handleLogout}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#FFFFFF',
-              color: '#EF4444',
-              border: '1px solid #FEE2E2',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              fontWeight: 600,
-              transition: 'all 0.2s',
-              boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#FEF2F2';
-              e.currentTarget.style.borderColor = '#FCA5A5';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#FFFFFF';
-              e.currentTarget.style.borderColor = '#FEE2E2';
-            }}
-          >
-            Logout
-          </button>
+          <button className="btn btn-primary" onClick={() => document.getElementById('db-import-input')?.click()}>Import DB</button>
+          <button className="btn btn-ghost" onClick={handleExportDB}>Export DB</button>
+          <button className="btn btn-ghost" onClick={handleClearDB}>Clear Database</button>
+          <button className="btn btn-ghost" onClick={handleLogout}>Logout</button>
         </div>
       </div>
       
       {/* Key Metrics */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
-        <div style={cardStyle} onClick={() => navigate('/exam-setup')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Total Sessions</h3>
-          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#8B7222' }}>{stats.sessions}</p>
+      <div className="card-grid stagger-children" style={{ marginBottom: '2rem' }}>
+        <div className="metric-card" onClick={() => navigate('/exam-setup')}>
+          <h3 style={{ margin: 0, color: 'var(--muted)', fontSize: '0.95rem', fontWeight: 600 }}>Total Sessions</h3>
+          <p className="metric-value">{stats.sessions}</p>
         </div>
-        <div style={cardStyle} onClick={() => navigate('/students')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Total Students</h3>
-          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#8B7222' }}>{stats.students}</p>
+        <div className="metric-card" onClick={() => navigate('/students')}>
+          <h3 style={{ margin: 0, color: 'var(--muted)', fontSize: '0.95rem', fontWeight: 600 }}>Total Students</h3>
+          <p className="metric-value">{stats.students}</p>
         </div>
-        <div style={cardStyle} onClick={() => navigate('/reporting')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Avg. Attendance</h3>
-          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#10B981' }}>{stats.attendance}%</p>
+        <div className="metric-card" onClick={() => navigate('/reporting')}>
+          <h3 style={{ margin: 0, color: 'var(--muted)', fontSize: '0.95rem', fontWeight: 600 }}>Avg. Attendance</h3>
+          <p className="metric-value" style={{ color: 'var(--upsa-success)' }}>{stats.attendance}%</p>
         </div>
       </div>
 
       {/* Detailed Sections */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
         
         {/* Recent Activity */}
-        <div style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2rem', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937', borderBottom: '2px solid #C9A84C', paddingBottom: '1rem', fontWeight: 700 }}>Recent Activity</h3>
+        <div className="card table-card">
+            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: 'var(--accent)', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>Recent Activity</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {monitoring.recentLogs.map((log: any, i: number) => (
-                    <li key={i} style={{ padding: '0.75rem 0', borderBottom: '1px solid #F3F4F6', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontWeight: 500, color: '#374151' }}>{log.event}</span>
-                        <span style={{ color: '#6B7280', fontSize: '0.875rem' }}>{log.time}</span>
+                    <li key={i} className="table-row-hover" style={{ padding: '0.75rem 0', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', animation: `fadeInUp 0.3s ease-out both`, animationDelay: `${0.04 + i * 0.03}s` }}>
+                        <span style={{ fontWeight: 500, color: 'var(--text)' }}>{log.event}</span>
+                        <span style={{ color: 'var(--muted)', fontSize: '0.875rem' }}>{log.time}</span>
                     </li>
                 ))}
             </ul>
-            <button style={{ marginTop: '1.5rem', background: 'none', border: 'none', color: '#8B7222', cursor: 'pointer', fontWeight: 600, padding: 0 }} onClick={() => navigate('/monitoring')}>View All Activity →</button>
+            <button className="animate-fade-in-up delay-4" style={{ marginTop: '1.5rem', background: 'none', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontWeight: 600, padding: 0, transition: 'color 0.2s ease, transform 0.2s ease' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#FFD15C'; e.currentTarget.style.transform = 'translateX(4px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--accent)'; e.currentTarget.style.transform = 'translateX(0)'; }} onClick={() => navigate('/monitoring')}>View All Activity &rarr;</button>
         </div>
 
         {/* System Status & Quick Actions */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2rem', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-                <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937', fontWeight: 700 }}>System Status</h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #F3F4F6' }}>
-                    <span style={{ color: '#374151', fontWeight: 500 }}>Active Exam Sessions</span>
-                    <span style={{ fontWeight: 'bold', color: '#8B7222', fontSize: '1.25rem' }}>{monitoring.activeSessions}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="card table-card">
+                <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: 'var(--accent)' }}>System Status</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid var(--border)' }}>
+                    <span style={{ color: 'var(--muted)' }}>Active Exam Sessions</span>
+                    <span style={{ fontWeight: 'bold', color: 'var(--upsa-success)', fontSize: '1.25rem' }}>{monitoring.activeSessions}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#374151', fontWeight: 500 }}>Biometric Devices</span>
-                    <span style={{ fontWeight: 'bold', color: '#8B7222', fontSize: '1.25rem' }}>{monitoring.devicesOnline} Online</span>
+                    <span style={{ color: 'var(--muted)' }}>Biometric Devices</span>
+                    <span style={{ fontWeight: 'bold', color: 'var(--accent)', fontSize: '1.25rem' }}>{monitoring.devicesOnline} Online</span>
                 </div>
             </div>
 
-            <div style={{ background: 'linear-gradient(135deg, #C9A84C 0%, #D4AF37 100%)', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.08)', color: '#1a1a1a' }}>
-                <h3 style={{ marginTop: 0, color: '#1a1a1a', marginBottom: '1.5rem', fontWeight: 700 }}>Quick Actions</h3>
-                <button onClick={() => navigate('/enroll')} style={{ display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid rgba(26,26,26,0.2)', backgroundColor: 'rgba(26,26,26,0.08)', color: '#1a1a1a', cursor: 'pointer', textAlign: 'left', fontWeight: 600, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.15)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.08)'}>+ Enroll New Student</button>
-                <button onClick={() => navigate('/exam-setup')} style={{ display: 'block', width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(26,26,26,0.2)', backgroundColor: 'rgba(26,26,26,0.08)', color: '#1a1a1a', cursor: 'pointer', textAlign: 'left', fontWeight: 600, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.15)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.08)'}>+ Schedule Exam Session</button>
+            <div className="animate-scale-in delay-5 card-accent-hover" style={{ background: 'linear-gradient(135deg, #00004E 0%, #1E3A8A 30%, #F27229 100%)', borderRadius: '16px', padding: '1.25rem', color: 'white' }}>
+                <h3 style={{ marginTop: 0, color: 'white', marginBottom: '1.5rem' }}>Quick Actions</h3>
+                <button onClick={() => navigate('/enroll')} style={{ display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Enroll New Student</button>
+                <button onClick={() => navigate('/exam-setup')} style={{ display: 'block', width: '100%', padding: '0.75rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Schedule Exam Session</button>
             </div>
         </div>
       </div>

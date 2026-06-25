@@ -25,17 +25,23 @@ const explicitBase =
 const candidateBases = explicitBase
   ? [explicitBase]
   : [
-      `${window.location.protocol}//${window.location.hostname}:4007/api/ai`,
-      `${window.location.protocol}//${window.location.hostname}:4000/api/ai`,
+      '/api/ai',
       'http://127.0.0.1:4007/api/ai',
       'http://127.0.0.1:4000/api/ai',
       'http://localhost:4007/api/ai',
       'http://localhost:4000/api/ai',
     ];
 
+const adminCandidateBases = [
+  '/api/admin',
+  'http://127.0.0.1:4007/api/admin',
+  'http://127.0.0.1:4000/api/admin',
+  'http://localhost:4007/api/admin',
+  'http://localhost:4000/api/admin',
+];
+
 const authCandidateBases = [
-  `${window.location.protocol}//${window.location.hostname}:4007/api/auth`,
-  `${window.location.protocol}//${window.location.hostname}:4000/api/auth`,
+  '/api/auth',
   'http://127.0.0.1:4007/api/auth',
   'http://127.0.0.1:4000/api/auth',
   'http://localhost:4007/api/auth',
@@ -43,8 +49,7 @@ const authCandidateBases = [
 ];
 
 const attendanceCandidateBases = [
-  `${window.location.protocol}//${window.location.hostname}:4007/api/attendance`,
-  `${window.location.protocol}//${window.location.hostname}:4000/api/attendance`,
+  '/api/attendance',
   'http://127.0.0.1:4007/api/attendance',
   'http://127.0.0.1:4000/api/attendance',
   'http://localhost:4007/api/attendance',
@@ -53,11 +58,20 @@ const attendanceCandidateBases = [
 
 const requestAI = async (path: string, init?: RequestInit) => {
   let lastError: Error | null = null;
+  const token = localStorage.getItem('authToken');
 
   for (const base of candidateBases) {
     const url = `${trimTrailingSlash(base)}${path}`;
     try {
-      const response = await fetch(url, init);
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        ...(init?.headers as Record<string, string> || {}),
+      };
+      if (token && !headers.Authorization && !headers.authorization) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
+      const response = await fetch(url, { ...init, headers });
       if (!response.ok) {
         let detail = `AI request failed with status ${response.status}`;
         try {
@@ -89,11 +103,20 @@ const requestAI = async (path: string, init?: RequestInit) => {
 
 const requestAuth = async (path: string, init?: RequestInit) => {
   let lastError: Error | null = null;
+  const token = localStorage.getItem('authToken');
 
   for (const base of authCandidateBases) {
     const url = `${trimTrailingSlash(base)}${path}`;
     try {
-      const response = await fetch(url, init);
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        ...(init?.headers as Record<string, string> || {}),
+      };
+      if (token && !headers.Authorization && !headers.authorization) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
+      const response = await fetch(url, { ...init, headers });
       if (!response.ok) {
         let detail = `Auth request failed with status ${response.status}`;
         try {
@@ -121,6 +144,32 @@ const requestAuth = async (path: string, init?: RequestInit) => {
   }
 
   throw lastError || new Error('Unable to reach backend auth API');
+};
+
+const requestAdmin = async (path: string, init?: RequestInit) => {
+  let lastError: Error | null = null;
+  const token = localStorage.getItem('authToken');
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  for (const base of adminCandidateBases) {
+    const url = `${trimTrailingSlash(base)}${path}`;
+    try {
+      const response = await fetch(url, { ...init, headers: { ...headers, ...(init?.headers as Record<string, string> || {}) } });
+      if (!response.ok) {
+        let detail = `Admin request failed with status ${response.status}`;
+        try {
+          const body = await response.json();
+          if (body?.message) detail = body.message;
+        } catch { /* keep generic */ }
+        throw new Error(detail);
+      }
+      return response;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error('Network request failed');
+    }
+  }
+  throw lastError || new Error('Unable to reach backend admin API');
 };
 
 const requestAttendance = async (path: string, init?: RequestInit) => {
@@ -239,47 +288,38 @@ export const login = async (username: string, password: string) => {
   }
 };
 
-export const signup = async (user: any) => {
-  const normalizedUsername = String(user.username || user.email || '').trim().toLowerCase();
-  const normalizedEmail = String(user.email || '').trim().toLowerCase();
-  const payload = {
-    ...user,
-    username: normalizedUsername,
-    email: normalizedEmail,
-  };
-
+export const validateAuthSession = async () => {
   try {
-    const response = await requestAuth('/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json();
-
-    const db = await initDB();
-    await db.put('users', payload);
-    await persistAndSync();
-    return result;
+    const response = await requestAuth('/me', { method: 'GET' });
+    return response.json();
   } catch (error) {
     const message = error instanceof Error ? error.message : '';
     const backendUnavailable = /Unable to reach backend auth API|Network request failed|Failed to fetch/i.test(message);
-    if (!backendUnavailable) {
-      throw error;
+
+    if (backendUnavailable) {
+      // Backend is unreachable — trust the locally stored session
+      const username = localStorage.getItem('username');
+      const email = localStorage.getItem('email');
+      const role = localStorage.getItem('userRole');
+      if (username) {
+        return {
+          success: true,
+          user: {
+            username,
+            email: email || username,
+            fullName: username,
+            role: role || 'invigilator',
+          },
+        };
+      }
     }
 
-    const db = await initDB();
-    const existingUsers = await db.getAll('users');
-    const existing = existingUsers.find((entry) =>
-      entry.username.toLowerCase() === normalizedUsername || entry.email.toLowerCase() === normalizedEmail
-    );
-    if (existing) {
-      throw new Error('An account with this email already exists');
-    }
-    await db.put('users', payload);
-    await persistAndSync();
-    return { success: true };
+    // Re-throw explicit auth failures (401, 403, invalid token, etc.)
+    throw error;
   }
 };
+
+
 
 export const fetchDashboardStats = async () => {
   try {
@@ -702,6 +742,47 @@ export const pushAllToMySQL = async (payload: {
       errors: [],
     };
   }
+};
+
+// ── Admin: Invigilator Management ──
+
+export const fetchInvigilators = async () => {
+  const response = await requestAdmin('/invigilators');
+  return response.json();
+};
+
+export const createInvigilator = async (fullName: string, email: string) => {
+  const response = await requestAdmin('/invigilators', {
+    method: 'POST',
+    body: JSON.stringify({ fullName, email }),
+  });
+  return response.json();
+};
+
+export const bulkCreateInvigilators = async (entries: { fullName: string; email: string }[]) => {
+  const response = await requestAdmin('/invigilators/bulk', {
+    method: 'POST',
+    body: JSON.stringify({ entries }),
+  });
+  return response.json();
+};
+
+export const deleteInvigilator = async (id: number) => {
+  const response = await requestAdmin(`/invigilators/${id}`, { method: 'DELETE' });
+  return response.json();
+};
+
+export const resetInvigilatorPassword = async (id: number) => {
+  const response = await requestAdmin(`/invigilators/${id}/reset-password`, { method: 'POST' });
+  return response.json();
+};
+
+export const bulkResetInvigilatorPasswords = async (ids: number[]) => {
+  const response = await requestAdmin('/invigilators/bulk-reset-passwords', {
+    method: 'POST',
+    body: JSON.stringify({ ids }),
+  });
+  return response.json();
 };
 
 export const storeMalpracticeEvent = async (payload: {

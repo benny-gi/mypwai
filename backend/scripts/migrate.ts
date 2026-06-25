@@ -93,8 +93,8 @@ async function migrateData() {
     const issues: ImportIssue[] = [];
 
     // Load JSON data
-    const usersPath = path.resolve(__dirname, 'data', 'users.json');
-    const dataPath = path.resolve(__dirname, 'data', 'app-data.json');
+    const usersPath = path.resolve(__dirname, '..', 'data', 'users.json');
+    const dataPath = path.resolve(__dirname, '..', 'data', 'app-data.json');
 
     let users: JsonUser[] = [];
     let store: DataStore = { students: [], sessions: [], attendance: [], scanEvents: [] };

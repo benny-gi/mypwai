@@ -53,5 +53,3 @@ export const transaction = async (callback: (conn: Connection) => Promise<void>)
     connection.release();
   }
 };
-
-export default ((): Pool => getPool())();

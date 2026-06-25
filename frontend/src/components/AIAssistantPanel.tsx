@@ -92,7 +92,7 @@ const AIAssistantPanel: React.FC = () => {
   };
 
   return (
-    <div
+    <div className="page-enter"
       style={{
         position: 'relative',
         overflow: 'hidden',
@@ -133,8 +133,8 @@ const AIAssistantPanel: React.FC = () => {
             style={{
               borderRadius: '24px',
               padding: '1.5rem',
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--border)',
+              border: '1px solid var(--border)',
               backdropFilter: 'blur(16px)',
             }}
           >
@@ -179,7 +179,7 @@ const AIAssistantPanel: React.FC = () => {
                 <h3 style={{ margin: 0, color: '#F8FAFC', fontSize: '1.8rem', lineHeight: 1.1 }}>
                   Exam Operations Copilot
                 </h3>
-                <p style={{ margin: '0.65rem 0 0', color: '#CBD5E1', maxWidth: '700px', lineHeight: 1.55 }}>
+                <p style={{ margin: '0.65rem 0 0', color: 'var(--muted)', maxWidth: '700px', lineHeight: 1.55 }}>
                   A conversational control room for admins and officers. It translates attendance data into plain-language
                   answers, flags risk patterns, and helps your team decide what to do next.
                 </p>
@@ -228,7 +228,7 @@ const AIAssistantPanel: React.FC = () => {
                     style={{
                       width: '34px',
                       height: '34px',
-                      borderRadius: '12px',
+                      borderRadius: '16px',
                       background: `${card.accent}22`,
                       color: card.accent,
                       display: 'flex',
@@ -241,7 +241,7 @@ const AIAssistantPanel: React.FC = () => {
                     AI
                   </div>
                   <div style={{ color: '#F8FAFC', fontWeight: 700, marginBottom: '0.45rem' }}>{card.title}</div>
-                  <div style={{ color: '#CBD5E1', lineHeight: 1.45, fontSize: '0.92rem' }}>{card.detail}</div>
+                  <div style={{ color: 'var(--muted)', lineHeight: 1.45, fontSize: '0.92rem' }}>{card.detail}</div>
                 </div>
               ))}
             </div>
@@ -251,8 +251,8 @@ const AIAssistantPanel: React.FC = () => {
             style={{
               borderRadius: '24px',
               padding: '1.35rem',
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--border)',
+              border: '1px solid var(--border)',
               backdropFilter: 'blur(16px)',
               display: 'flex',
               flexDirection: 'column',
@@ -274,7 +274,7 @@ const AIAssistantPanel: React.FC = () => {
                       padding: '0.95rem 1rem',
                       borderRadius: '16px',
                       border: '1px solid rgba(191, 219, 254, 0.22)',
-                      background: 'rgba(255,255,255,0.08)',
+                      background: 'var(--border)',
                       color: '#F8FAFC',
                       cursor: 'pointer',
                       transition: 'transform 0.2s ease, background 0.2s ease',
@@ -285,7 +285,7 @@ const AIAssistantPanel: React.FC = () => {
                     }}
                     onMouseLeave={(event) => {
                       event.currentTarget.style.transform = 'translateY(0)';
-                      event.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                      event.currentTarget.style.background = 'var(--border)';
                     }}
                   >
                     <div style={{ color: '#7DD3FC', fontSize: '0.78rem', fontWeight: 700, marginBottom: '0.25rem' }}>
@@ -307,7 +307,7 @@ const AIAssistantPanel: React.FC = () => {
               }}
             >
               <div style={{ color: '#F8FAFC', fontWeight: 700 }}>What it feels like</div>
-              <div style={{ color: '#CBD5E1', lineHeight: 1.45, marginTop: '0.45rem', fontSize: '0.92rem' }}>
+              <div style={{ color: 'var(--muted)', lineHeight: 1.45, marginTop: '0.45rem', fontSize: '0.92rem' }}>
                 Fast chat responses, actionable language, and a visible sense that the system is actively helping staff run the exam floor.
               </div>
             </div>
@@ -354,7 +354,7 @@ const AIAssistantPanel: React.FC = () => {
               </div>
               <div>
                 <div style={{ color: '#0F172A', fontWeight: 800 }}>Ops Dialogue</div>
-                <div style={{ color: '#64748B', fontSize: '0.9rem' }}>Ask naturally. Get operational answers.</div>
+                <div style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Ask naturally. Get operational answers.</div>
               </div>
             </div>
             <div
@@ -390,7 +390,7 @@ const AIAssistantPanel: React.FC = () => {
               maxHeight: '430px',
               overflowY: 'auto',
               background:
-                'radial-gradient(circle at top, rgba(226,232,240,0.6), transparent 40%), linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)',
+                'radial-gradient(circle at top, rgba(14,165,233,0.08), transparent 40%), linear-gradient(180deg, #0E0E3A 0%, #06062B 100%)',
             }}
           >
             {messages.map((message, index) => {
@@ -455,7 +455,7 @@ const AIAssistantPanel: React.FC = () => {
                       <div
                         style={{
                           marginTop: '0.35rem',
-                          color: '#64748B',
+                          color: 'var(--muted)',
                           fontSize: '0.78rem',
                           textAlign: isAssistant ? 'left' : 'right',
                           padding: '0 0.25rem',
@@ -513,10 +513,10 @@ const AIAssistantPanel: React.FC = () => {
                 alignItems: 'center',
                 gap: '0.85rem',
                 padding: '0.75rem',
-                border: '1px solid #CBD5E1',
+                border: '1px solid var(--border)',
                 borderRadius: '20px',
-                background: '#F8FAFC',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.9)',
+                background: 'rgba(255,255,255,0.04)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
               }}
             >
               <div
@@ -583,7 +583,7 @@ const AIAssistantPanel: React.FC = () => {
                 justifyContent: 'space-between',
                 gap: '1rem',
                 flexWrap: 'wrap',
-                color: '#64748B',
+                color: 'var(--muted)',
                 fontSize: '0.84rem',
               }}
             >

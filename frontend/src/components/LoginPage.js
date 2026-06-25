@@ -21,7 +21,7 @@ const LoginPage = () => {
         .landing-overlay {
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(0, 0, 0, 0.4);
+          background: rgba(0, 0, 78, 0.58);
           z-index: 1;
         }
         .landing-nav {
@@ -35,7 +35,7 @@ const LoginPage = () => {
         }
         .nav-btn {
           background: transparent;
-          border: 2px solid rgba(255,255,255,0.8);
+          border: 2px solid rgba(255,182,6,0.7);
           color: white;
           padding: 0.6rem 1.5rem;
           border-radius: 30px;
@@ -45,8 +45,8 @@ const LoginPage = () => {
           transition: all 0.3s ease;
         }
         .nav-btn:hover {
-          background: white;
-          color: #1a1a1a;
+          background: #FFB606;
+          color: #00004E;
           transform: translateY(-2px);
         }
         .landing-content {
@@ -95,13 +95,12 @@ const LoginPage = () => {
 
       <div className="landing-nav">
         <button className="nav-btn" onClick={() => navigate('/login')}>Login</button>
-        <button className="nav-btn" onClick={() => navigate('/signup')}>Sign Up</button>
         <button className="nav-btn" onClick={() => window.location.href = 'mailto:support@examsys.com'}>Contact Us</button>
       </div>
       
       <div className="landing-content">
         <h1 className="system-name">Examsys</h1>
-        <p className="motto">"Excellence in every step"</p>
+        <p className="motto">"Scholarship with Professionalism"</p>
         
         <div className="overview-card">
           <p className="overview-text">
