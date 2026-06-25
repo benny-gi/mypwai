@@ -363,7 +363,7 @@ const StudentManagementPage: React.FC = () => {
     <div style={{
       minHeight: 'calc(100vh - 68px)',
       width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
+      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       padding: '2rem'
@@ -382,7 +382,8 @@ const StudentManagementPage: React.FC = () => {
           padding: '2rem', 
           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
           marginBottom: '2rem',
-          backdropFilter: 'blur(5px)'
+          backdropFilter: 'blur(5px)',
+          borderTop: '4px solid #C9A84C'
         }}>
           <h3 style={{ marginTop: 0, color: '#1F2937', fontSize: '1.5rem', marginBottom: '1.5rem' }}>
             {editingIndex ? `Editing Student: ${editingIndex}` : 'Add New Student'}
@@ -410,8 +411,8 @@ const StudentManagementPage: React.FC = () => {
             </div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button type="submit" disabled={loading} style={{
-                background: editingIndex ? '#10B981' : '#4F46E5',
-                color: '#FFFFFF',
+                background: '#C9A84C',
+                color: '#1a1a1a',
                 border: 'none',
                 borderRadius: '8px',
                 padding: '0.85rem 1.5rem',
@@ -450,7 +451,8 @@ const StudentManagementPage: React.FC = () => {
           padding: '2rem', 
           boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
           overflowX: 'auto',
-          backdropFilter: 'blur(5px)'
+          backdropFilter: 'blur(5px)',
+          borderTop: '4px solid #C9A84C'
         }}>
           <h3 style={{ marginTop: 0, color: '#1F2937', fontSize: '1.5rem', marginBottom: '1.5rem' }}>Registered Students</h3>
           
@@ -467,8 +469,8 @@ const StudentManagementPage: React.FC = () => {
               disabled={syncingAllFaces}
               style={{
                 padding: '0.75rem 1.5rem',
-                background: '#2563EB',
-                color: 'white',
+                background: '#C9A84C',
+                color: '#1a1a1a',
                 border: 'none',
                 borderRadius: '8px',
                 cursor: syncingAllFaces ? 'not-allowed' : 'pointer',
@@ -484,7 +486,7 @@ const StudentManagementPage: React.FC = () => {
                 Delete Selected ({selectedIndices.size})
               </button>
             )}
-            <button onClick={handleExport} style={{ padding: '0.75rem 1.5rem', background: '#10B981', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, whiteSpace: 'nowrap' }}>Export Excel</button>
+            <button onClick={handleExport} style={{ padding: '0.75rem 1.5rem', background: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, whiteSpace: 'nowrap' }}>Export Excel</button>
           </div>
 
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -548,9 +550,9 @@ const StudentManagementPage: React.FC = () => {
                     <button 
                       onClick={() => setViewStudent(s)}
                       style={{
-                        background: '#E0E7FF',
-                        color: '#4338CA',
-                        border: '1px solid #C7D2FE',
+                        background: '#FFF9EB',
+                        color: '#A68A2E',
+                        border: '1px solid #C9A84C',
                         borderRadius: '6px',
                         padding: '0.25rem 0.75rem',
                         cursor: 'pointer',
@@ -562,9 +564,9 @@ const StudentManagementPage: React.FC = () => {
                     <button 
                       onClick={() => handleEdit(s)}
                       style={{
-                        background: '#DBEAFE',
-                        color: '#2563EB',
-                        border: '1px solid #BFDBFE',
+                        background: '#FFF9EB',
+                        color: '#A68A2E',
+                        border: '1px solid #C9A84C',
                         borderRadius: '6px',
                         padding: '0.25rem 0.75rem',
                         cursor: 'pointer',

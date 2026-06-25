@@ -12,7 +12,8 @@ const cardStyle: React.CSSProperties = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   cursor: 'pointer',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+  borderTop: '4px solid #C9A84C'
 };
 
 const DashboardPage: React.FC = () => {
@@ -597,7 +598,7 @@ const DashboardPage: React.FC = () => {
         width: '40px',
         height: '40px',
         border: '4px solid #E5E7EB',
-        borderTop: '4px solid #4F46E5',
+        borderTop: '4px solid #C9A84C',
         borderRadius: '50%',
         animation: 'spin 1s linear infinite',
         marginBottom: '1rem'
@@ -611,7 +612,7 @@ const DashboardPage: React.FC = () => {
     <div style={{
       minHeight: 'calc(100vh - 68px)',
       width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
+      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       padding: '2rem'
@@ -633,8 +634,8 @@ const DashboardPage: React.FC = () => {
           <button
             onClick={() => document.getElementById('db-import-input')?.click()}
             style={{
-              padding: '0.75rem 1.5rem', backgroundColor: '#E0E7FF', color: '#4338CA',
-              border: '1px solid #C7D2FE', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
+              padding: '0.75rem 1.5rem', backgroundColor: '#FFF9EB', color: '#A68A2E',
+              border: '1px solid #C9A84C', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
             }}
           >
             Import DB
@@ -642,8 +643,8 @@ const DashboardPage: React.FC = () => {
           <button
             onClick={handleExportDB}
             style={{
-              padding: '0.75rem 1.5rem', backgroundColor: '#ECFDF5', color: '#065F46',
-              border: '1px solid #6EE7B7', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
+              padding: '0.75rem 1.5rem', backgroundColor: '#FFF9EB', color: '#A68A2E',
+              border: '1px solid #C9A84C', borderRadius: '8px', cursor: 'pointer', fontWeight: 600
             }}
           >
             Export DB
@@ -687,15 +688,15 @@ const DashboardPage: React.FC = () => {
       {/* Key Metrics */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
         <div style={cardStyle} onClick={() => navigate('/exam-setup')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#6B7280', fontSize: '1rem', fontWeight: 500 }}>Total Sessions</h3>
-          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#4F46E5' }}>{stats.sessions}</p>
+          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Total Sessions</h3>
+          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#8B7222' }}>{stats.sessions}</p>
         </div>
         <div style={cardStyle} onClick={() => navigate('/students')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#6B7280', fontSize: '1rem', fontWeight: 500 }}>Total Students</h3>
-          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#4F46E5' }}>{stats.students}</p>
+          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Total Students</h3>
+          <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#8B7222' }}>{stats.students}</p>
         </div>
         <div style={cardStyle} onClick={() => navigate('/reporting')} onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'} onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-          <h3 style={{ margin: 0, color: '#6B7280', fontSize: '1rem', fontWeight: 500 }}>Avg. Attendance</h3>
+          <h3 style={{ margin: 0, color: '#374151', fontSize: '1rem', fontWeight: 600 }}>Avg. Attendance</h3>
           <p style={{ fontSize: '3rem', margin: '1rem 0', fontWeight: 700, color: '#10B981' }}>{stats.attendance}%</p>
         </div>
       </div>
@@ -705,7 +706,7 @@ const DashboardPage: React.FC = () => {
         
         {/* Recent Activity */}
         <div style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2rem', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937', borderBottom: '1px solid #E5E7EB', paddingBottom: '1rem' }}>Recent Activity</h3>
+            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937', borderBottom: '2px solid #C9A84C', paddingBottom: '1rem', fontWeight: 700 }}>Recent Activity</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {monitoring.recentLogs.map((log: any, i: number) => (
                     <li key={i} style={{ padding: '0.75rem 0', borderBottom: '1px solid #F3F4F6', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -714,27 +715,27 @@ const DashboardPage: React.FC = () => {
                     </li>
                 ))}
             </ul>
-            <button style={{ marginTop: '1.5rem', background: 'none', border: 'none', color: '#4F46E5', cursor: 'pointer', fontWeight: 600, padding: 0 }} onClick={() => navigate('/monitoring')}>View All Activity &rarr;</button>
+            <button style={{ marginTop: '1.5rem', background: 'none', border: 'none', color: '#8B7222', cursor: 'pointer', fontWeight: 600, padding: 0 }} onClick={() => navigate('/monitoring')}>View All Activity →</button>
         </div>
 
         {/* System Status & Quick Actions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div style={{ backgroundColor: '#fff', borderRadius: '12px', padding: '2rem', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-                <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937' }}>System Status</h3>
+                <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1F2937', fontWeight: 700 }}>System Status</h3>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid #F3F4F6' }}>
-                    <span style={{ color: '#6B7280' }}>Active Exam Sessions</span>
-                    <span style={{ fontWeight: 'bold', color: '#10B981', fontSize: '1.25rem' }}>{monitoring.activeSessions}</span>
+                    <span style={{ color: '#374151', fontWeight: 500 }}>Active Exam Sessions</span>
+                    <span style={{ fontWeight: 'bold', color: '#8B7222', fontSize: '1.25rem' }}>{monitoring.activeSessions}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: '#6B7280' }}>Biometric Devices</span>
-                    <span style={{ fontWeight: 'bold', color: '#4F46E5', fontSize: '1.25rem' }}>{monitoring.devicesOnline} Online</span>
+                    <span style={{ color: '#374151', fontWeight: 500 }}>Biometric Devices</span>
+                    <span style={{ fontWeight: 'bold', color: '#8B7222', fontSize: '1.25rem' }}>{monitoring.devicesOnline} Online</span>
                 </div>
             </div>
 
-            <div style={{ background: 'linear-gradient(135deg, #4F46E5 0%, #818CF8 100%)', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', color: 'white' }}>
-                <h3 style={{ marginTop: 0, color: 'white', marginBottom: '1.5rem' }}>Quick Actions</h3>
-                <button onClick={() => navigate('/enroll')} style={{ display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Enroll New Student</button>
-                <button onClick={() => navigate('/exam-setup')} style={{ display: 'block', width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', textAlign: 'left', fontWeight: 500, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'}>+ Schedule Exam Session</button>
+            <div style={{ background: 'linear-gradient(135deg, #C9A84C 0%, #D4AF37 100%)', borderRadius: '12px', padding: '2rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.08)', color: '#1a1a1a' }}>
+                <h3 style={{ marginTop: 0, color: '#1a1a1a', marginBottom: '1.5rem', fontWeight: 700 }}>Quick Actions</h3>
+                <button onClick={() => navigate('/enroll')} style={{ display: 'block', width: '100%', padding: '0.75rem', marginBottom: '1rem', borderRadius: '8px', border: '1px solid rgba(26,26,26,0.2)', backgroundColor: 'rgba(26,26,26,0.08)', color: '#1a1a1a', cursor: 'pointer', textAlign: 'left', fontWeight: 600, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.15)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.08)'}>+ Enroll New Student</button>
+                <button onClick={() => navigate('/exam-setup')} style={{ display: 'block', width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(26,26,26,0.2)', backgroundColor: 'rgba(26,26,26,0.08)', color: '#1a1a1a', cursor: 'pointer', textAlign: 'left', fontWeight: 600, transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.15)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(26,26,26,0.08)'}>+ Schedule Exam Session</button>
             </div>
         </div>
       </div>

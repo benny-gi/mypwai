@@ -149,7 +149,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
       style={{
         minHeight: 'calc(100vh - 68px)',
         width: '100%',
-        backgroundImage: 'linear-gradient(135deg, #0b1020 0%, #1e3a8a 50%, #0f766e 100%)',
+        backgroundImage: 'linear-gradient(135deg, #0b1020 0%, #C9A84C 50%, #0f766e 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         padding: '2rem',
@@ -157,7 +157,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div style={{ marginBottom: '2rem' }}>
-          <div style={{ color: '#A7F3D0', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.82rem' }}>
+          <div style={{ color: '#C9A84C', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.82rem' }}>
             Biometric Enrollment
           </div>
           <h1 style={{ color: '#fff', margin: '0.45rem 0 0.5rem', fontSize: '2.35rem' }}>Fingerprint Scanner Registration Console</h1>
@@ -170,7 +170,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
           <div style={{ ...cardStyle, padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
               <div>
-                <div style={{ color: '#10B981', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                <div style={{ color: '#C9A84C', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                   Enrollment Bay
                 </div>
                 <h3 style={{ margin: '0.35rem 0 0', color: '#0F172A', fontSize: '1.5rem' }}>Capture and Quality Review</h3>
@@ -235,7 +235,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
                     <path d="M21.54 15H21a5 5 0 0 0-5 5v2" />
                   </svg>
                 </div>
-                <div style={{ marginTop: '1rem', color: '#ECFDF5', fontWeight: 700 }}>
+                <div style={{ marginTop: '1rem', color: '#F9FAFB', fontWeight: 700 }}>
                   {loading ? 'Reading fingerprint ridges for enrollment...' : 'Ready to register a new fingerprint'}
                 </div>
               </div>
@@ -247,7 +247,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
                 <span>{scanProgress}%</span>
               </div>
               <div style={{ width: '100%', height: '12px', borderRadius: '999px', background: '#E2E8F0', overflow: 'hidden' }}>
-                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #10B981, #059669)', transition: 'width 0.2s ease' }} />
+                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #C9A84C, #D4AF37)', transition: 'width 0.2s ease' }} />
               </div>
             </div>
           </div>
@@ -272,7 +272,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
                     padding: '0 1.25rem',
                     border: 'none',
                     borderRadius: '16px',
-                    background: loading || !deviceConnected ? '#94A3B8' : 'linear-gradient(145deg, #10B981, #047857)',
+                    background: loading || !deviceConnected ? '#94A3B8' : 'linear-gradient(145deg, #C9A84C, #A68A2E)',
                     color: '#fff',
                     cursor: loading || !deviceConnected ? 'not-allowed' : 'pointer',
                     fontWeight: 800,
@@ -287,13 +287,13 @@ const FingerprintEnrollmentPage: React.FC = () => {
                 {enrollmentSteps.map((step, index) => {
                   const complete = index <= activeStep && (loading || scanProgress === 100);
                   return (
-                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#047857' : '#64748B' }}>
+                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#A68A2E' : '#64748B' }}>
                       <div style={{
                         width: '28px',
                         height: '28px',
                         borderRadius: '999px',
                         background: complete ? '#D1FAE5' : '#E2E8F0',
-                        color: complete ? '#047857' : '#64748B',
+                        color: complete ? '#A68A2E' : '#64748B',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -312,9 +312,9 @@ const FingerprintEnrollmentPage: React.FC = () => {
                   onClick={connectScanner}
                   disabled={loading || !deviceConnected}
                   style={{
-                    border: '1px solid #A7F3D0',
-                    background: '#ECFDF5',
-                    color: '#047857',
+                    border: '1px solid #C9A84C',
+                    background: '#FFF9EB',
+                    color: '#A68A2E',
                     borderRadius: '14px',
                     padding: '0.75rem 1rem',
                     fontWeight: 800,
@@ -374,7 +374,7 @@ const FingerprintEnrollmentPage: React.FC = () => {
             marginTop: '1.5rem',
             ...cardStyle,
             padding: '1rem 1.25rem',
-            borderLeft: status.toLowerCase().includes('failed') || status.toLowerCase().includes('offline') ? '6px solid #EF4444' : '6px solid #10B981',
+            borderTop: status.toLowerCase().includes('failed') || status.toLowerCase().includes('offline') ? '4px solid #EF4444' : '4px solid #C9A84C',
             color: '#0F172A',
             fontWeight: 700,
           }}>

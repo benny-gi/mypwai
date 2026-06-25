@@ -55,7 +55,7 @@ const LoginPage: React.FC = () => {
       }}>
         <div className="login-sidebar" style={{
           flex: 1,
-          backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
+          backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           minWidth: 0,
@@ -75,7 +75,8 @@ const LoginPage: React.FC = () => {
             background: '#fff',
             padding: '3rem',
             borderRadius: '8px',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
+            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+            borderTop: '4px solid #C9A84C'
           }}>
           <h2 style={{ textAlign: 'center', color: '#212529', marginBottom: '1rem', fontSize: '2.5rem', fontWeight: 300 }}>
             Login
@@ -86,7 +87,7 @@ const LoginPage: React.FC = () => {
 
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '1.5rem' }}>
-              <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem', color: '#495057' }}>Username or Email</label>
+              <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem', color: '#374151', fontWeight: 600 }}>Username or Email</label>
               <input
                 id="username"
                 type="text"
@@ -104,7 +105,7 @@ const LoginPage: React.FC = () => {
               />
             </div>
             <div style={{ marginBottom: '1.5rem' }}>
-              <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem', color: '#495057' }}>Password</label>
+              <label htmlFor="password" style={{ display: 'block', marginBottom: '0.5rem', color: '#374151', fontWeight: 600 }}>Password</label>
               <input
                 id="password"
                 type="password"
@@ -127,8 +128,8 @@ const LoginPage: React.FC = () => {
               disabled={loading}
               style={{
                 width: '100%',
-                background: '#007bff',
-                color: '#fff',
+                background: '#C9A84C',
+                color: '#1a1a1a',
                 border: 'none',
                 borderRadius: '0.25rem',
                 padding: '1rem 0',

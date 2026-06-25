@@ -11,7 +11,7 @@
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
-  color: #4F46E5;
+  color: #A68A2E;
   margin-right: 2rem;
   display: flex;
   align-items: center;
@@ -41,12 +41,12 @@
 }
 
 .nav-link.active {
-  color: #4F46E5;
+  color: #A68A2E;
   font-weight: 600;
-  background-color: #EEF2FF;
+  background-color: #FFF9EB;
 }
 
 .nav-link:hover {
-  background-color: #F3F4F6;
-  color: #1F2937;
+  background-color: #FFF9EB;
+  color: #A68A2E;
 }

@@ -97,7 +97,7 @@ const SignInPage: React.FC = () => {
 
         {/* Right Side - Form */}
         <div className="signin-form-wrapper" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb', minWidth: 0 }}>
-          <div style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+          <div style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderTop: '4px solid #C9A84C' }}>
           <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '0.5rem', textAlign: 'center' }}>Sign In</h2>
           <p style={{ color: '#666', textAlign: 'center', marginBottom: '2rem' }}>Access your dashboard</p>
           
@@ -127,12 +127,12 @@ const SignInPage: React.FC = () => {
               )}
             </div>
             {error && <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-            <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.875rem', backgroundColor: '#4F46E5', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
+            <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.875rem', backgroundColor: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
           <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#666' }}>
-            <p>Don't have an account? <span onClick={() => navigate('/signup')} style={{ color: '#4F46E5', cursor: 'pointer', fontWeight: 600 }}>Sign Up</span></p>
+            <p>Don't have an account? <span onClick={() => navigate('/signup')} style={{ color: '#A68A2E', cursor: 'pointer', fontWeight: 600 }}>Sign Up</span></p>
           </div>
         </div>
       </div>

@@ -98,7 +98,7 @@ const ReportingPage: React.FC = () => {
     <div style={{
       minHeight: 'calc(100vh - 68px)',
       width: '100%',
-      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%)',
+      backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #C9A84C 50%, #0f766e 100%)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       padding: '2rem'
@@ -122,7 +122,7 @@ const ReportingPage: React.FC = () => {
           <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Date</label>
           <input type="date" value={filters.date} onChange={e => setFilters({...filters, date: e.target.value})} style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }} />
         </div>
-        <button type="submit" disabled={loading} style={{ padding: '0.6rem 1.5rem', background: '#005fa3', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>{loading ? 'Loading...' : 'Generate Report'}</button>
+        <button type="submit" disabled={loading} style={{ padding: '0.6rem 1.5rem', background: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>{loading ? 'Loading...' : 'Generate Report'}</button>
       </form>
 
       {searched && (
@@ -132,7 +132,7 @@ const ReportingPage: React.FC = () => {
             Report for <strong>{filters.course}</strong> on <strong>{new Date(filters.date).toLocaleDateString()}</strong>
           </div>
           <div style={{ display: 'flex', gap: '1rem' }}>
-            <button onClick={handleExport} style={{ padding: '0.5rem 1rem', background: '#10B981', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Export Text</button>
+            <button onClick={handleExport} style={{ padding: '0.5rem 1rem', background: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Export Text</button>
             <button onClick={() => window.print()} style={{ padding: '0.5rem 1rem', background: '#374151', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>Print Report</button>
           </div>
         </div>
@@ -167,28 +167,28 @@ const ReportingPage: React.FC = () => {
           </div>
         )}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Total Students</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>Total Students</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: '#1F2937' }}>{total}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Present</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>Present</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: '#10B981' }}>{present}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Absent</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>Absent</div>
             <div style={{ fontSize: '2rem', fontWeight: 700, color: '#EF4444' }}>{absent}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Attendance Rate</div>
-            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#4F46E5' }}>{percentage}%</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>Attendance Rate</div>
+            <div style={{ fontSize: '2rem', fontWeight: 700, color: '#8B7222' }}>{percentage}%</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>First Arrival</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>First Arrival</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#059669' }}>{firstArrival}</div>
           </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)' }}>
-            <div style={{ fontSize: '0.9rem', color: '#6B7280', fontWeight: 600 }}>Last Arrival</div>
+          <div style={{ background: 'rgba(255, 255, 255, 0.9)', padding: '1.5rem', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', textAlign: 'center', backdropFilter: 'blur(5px)', borderTop: '4px solid #C9A84C' }}>
+            <div style={{ fontSize: '0.9rem', color: '#374151', fontWeight: 600 }}>Last Arrival</div>
             <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#D97706' }}>{lastArrival}</div>
           </div>
         </div>
@@ -220,9 +220,9 @@ const ReportingPage: React.FC = () => {
                 style={{
                   padding: '0.4rem 1rem',
                   borderRadius: '9999px',
-                  border: '1px solid ' + (statusFilter === status ? '#005fa3' : '#D1D5DB'),
-                  background: statusFilter === status ? '#005fa3' : 'transparent',
-                  color: statusFilter === status ? '#fff' : '#374151',
+                  border: '1px solid ' + (statusFilter === status ? '#C9A84C' : '#D1D5DB'),
+                  background: statusFilter === status ? '#C9A84C' : 'transparent',
+                  color: statusFilter === status ? '#1a1a1a' : '#374151',
                   cursor: 'pointer',
                   fontSize: '0.85rem',
                   fontWeight: 500,

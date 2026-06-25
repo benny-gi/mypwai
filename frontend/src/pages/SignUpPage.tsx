@@ -61,7 +61,7 @@ const SignUpPage: React.FC = () => {
         </div>
       </div>
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb', overflowY: 'auto' }}>
-        <div style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', margin: '2rem' }}>
+        <div style={{ width: '100%', maxWidth: '400px', padding: '2.5rem', backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', margin: '2rem', borderTop: '4px solid #C9A84C' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '0.5rem', textAlign: 'center' }}>Sign Up</h2>
             <p style={{ color: '#666', textAlign: 'center', marginBottom: '2rem' }}>Create your account</p>
           <form onSubmit={handleSubmit}>
@@ -112,12 +112,12 @@ const SignUpPage: React.FC = () => {
               )}
             </div>
             {error && <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-            <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.875rem', backgroundColor: '#4F46E5', color: 'white', border: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
+            <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.875rem', backgroundColor: '#C9A84C', color: '#1a1a1a', border: 'none', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
               {loading ? 'Creating Account...' : 'Sign Up'}
             </button>
           </form>
           <div style={{ textAlign: 'center', marginTop: '1.5rem', color: '#666' }}>
-            <p>Already have an account? <span onClick={() => navigate('/login')} style={{ color: '#4F46E5', cursor: 'pointer', fontWeight: 600 }}>Sign In</span></p>
+            <p>Already have an account? <span onClick={() => navigate('/login')} style={{ color: '#A68A2E', cursor: 'pointer', fontWeight: 600 }}>Sign In</span></p>
           </div>
         </div>
       </div>

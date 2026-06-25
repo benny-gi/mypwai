@@ -17,7 +17,10 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">ExamSys</div>
+      <div className="navbar-brand">
+        <img src="/UPSA.jpeg" alt="UPSA" className="nav-logo" />
+        BioAttend
+      </div>
       <div className="navbar-nav">
         <Link to="/dashboard" className={getLinkClass('/dashboard')}>Dashboard</Link>
         <Link to="/students" className={getLinkClass('/students')}>Students</Link>

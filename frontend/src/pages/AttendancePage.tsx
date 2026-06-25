@@ -159,7 +159,7 @@ const AttendancePage: React.FC = () => {
       style={{
         minHeight: 'calc(100vh - 68px)',
         width: '100%',
-        backgroundImage: 'linear-gradient(135deg, #0b1020 0%, #1e3a8a 50%, #0f766e 100%)',
+        backgroundImage: 'linear-gradient(135deg, #0b1020 0%, #C9A84C 50%, #0f766e 100%)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         padding: '2rem',
@@ -167,7 +167,7 @@ const AttendancePage: React.FC = () => {
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div style={{ marginBottom: '2rem' }}>
-          <div style={{ color: '#BAE6FD', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.82rem' }}>
+          <div style={{ color: '#C9A84C', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', fontSize: '0.82rem' }}>
             Fingerprint Verification
           </div>
           <h1 style={{ color: '#fff', margin: '0.45rem 0 0.5rem', fontSize: '2.35rem' }}>Biometric Attendance Gate</h1>
@@ -180,7 +180,7 @@ const AttendancePage: React.FC = () => {
           <div style={{ ...glassCard, padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', gap: '1rem', flexWrap: 'wrap' }}>
               <div>
-                <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                <div style={{ color: '#C9A84C', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                   Live Sensor Feed
                 </div>
                 <h3 style={{ margin: '0.35rem 0 0', color: '#0F172A', fontSize: '1.5rem' }}>Fingerprint Capture Surface</h3>
@@ -265,14 +265,14 @@ const AttendancePage: React.FC = () => {
                 <span>{scanProgress}%</span>
               </div>
               <div style={{ width: '100%', height: '12px', borderRadius: '999px', background: '#E2E8F0', overflow: 'hidden' }}>
-                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #0EA5E9, #14B8A6)', transition: 'width 0.2s ease' }} />
+                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #C9A84C, #D4AF37)', transition: 'width 0.2s ease' }} />
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div style={{ ...glassCard, padding: '1.35rem' }}>
-              <div style={{ color: '#0EA5E9', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <div style={{ color: '#C9A84C', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                 Operator Console
               </div>
               <div style={{ marginTop: '0.9rem' }}>
@@ -293,7 +293,7 @@ const AttendancePage: React.FC = () => {
                       padding: '1rem 1.25rem',
                       border: 'none',
                       borderRadius: '16px',
-                      background: loading || !deviceConnected ? '#94A3B8' : 'linear-gradient(145deg, #0284C7, #0F766E)',
+                      background: loading || !deviceConnected ? '#94A3B8' : 'linear-gradient(145deg, #C9A84C, #A68A2E)',
                       color: '#fff',
                       cursor: loading || !deviceConnected ? 'not-allowed' : 'pointer',
                       fontWeight: 800,
@@ -308,13 +308,13 @@ const AttendancePage: React.FC = () => {
                 {progressSteps.map((step, index) => {
                   const complete = index <= activeStep && (loading || scanProgress === 100);
                   return (
-                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#0F766E' : '#64748B' }}>
+                    <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: complete ? '#A68A2E' : '#64748B' }}>
                       <div style={{
                         width: '28px',
                         height: '28px',
                         borderRadius: '999px',
-                        background: complete ? '#CCFBF1' : '#E2E8F0',
-                        color: complete ? '#0F766E' : '#64748B',
+                        background: complete ? '#FFF9EB' : '#E2E8F0',
+                        color: complete ? '#A68A2E' : '#64748B',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -333,9 +333,9 @@ const AttendancePage: React.FC = () => {
                   onClick={connectScanner}
                   disabled={loading || !deviceConnected}
                   style={{
-                    border: '1px solid #BAE6FD',
+                    border: '1px solid #C9A84C',
                     background: '#EFF6FF',
-                    color: '#0369A1',
+                    color: '#A68A2E',
                     borderRadius: '14px',
                     padding: '0.75rem 1rem',
                     fontWeight: 800,
@@ -395,7 +395,7 @@ const AttendancePage: React.FC = () => {
             marginTop: '1.5rem',
             ...glassCard,
             padding: '1rem 1.25rem',
-            borderLeft: message.toLowerCase().includes('failed') || message.toLowerCase().includes('offline') ? '6px solid #EF4444' : '6px solid #14B8A6',
+            borderTop: message.toLowerCase().includes('failed') || message.toLowerCase().includes('offline') ? '4px solid #EF4444' : '4px solid #C9A84C',
             color: '#0F172A',
             fontWeight: 700,
           }}>

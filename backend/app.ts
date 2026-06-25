@@ -2,6 +2,7 @@ import express from 'express';
 import attendanceRouter from './modules/attendance.js';
 import aiRouter from './modules/ai.js';
 import authRouter from './modules/auth.js';
+import fingerprintRouter from './modules/fingerprint.js';
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.get('/', (req, res) => {
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/ai', aiRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/fingerprint', fingerprintRouter);
 
 export default app;
